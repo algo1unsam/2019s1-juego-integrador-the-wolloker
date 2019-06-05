@@ -1,0 +1,18 @@
+import wollok.game.* 
+import mapa.*
+import paredes.*
+import Gaston.*
+
+program NoNameGame {
+	game.addVisualCharacterIn(gaston,game.at(11,1))
+	
+	game.title("NoName")
+	game.height(15)
+	game.width(25)
+	game.ground("suelo.png")
+
+  
+	nivel1.cargar()
+	
+	game.start()
+}
