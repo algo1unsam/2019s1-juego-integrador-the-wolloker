@@ -3,11 +3,14 @@ import mapa.*
 import paredes.*
 import tablero.*
 
-object gaston {
+object gaston inherits CosaEnTablero {
 
-	method image() = "jugador.png"
+	override method dejaPasar() = true
+
+	override method image() = "jugador.png"
 
 }
+
 //-----------------------------------------------------
 /*esto para sacer metodos */
 object player1 {
@@ -30,7 +33,6 @@ object player1 {
 	/* tengo que reveer estos 3 metodos porque me crean las instancias antes de verificar si lo puede plantar
 	 * pero si en todos los metodos evaluo el if, estoy repitiendo codigo.....
 	 */
-	
 	method lugarEstaVacio() = self.cosasEnMismaPosicion().isEmpty()
 
 	method cosasEnMismaPosicion() = game.colliders(self) // me da todos menos hector, estimo que es una lista

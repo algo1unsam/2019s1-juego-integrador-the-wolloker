@@ -3,7 +3,7 @@ import gaston.*
 import mapa.*
 import tablero.*
 
-class Pared {
+class Pared inherits tablero.CosaEnTablero{
 
 	method image() = "muro.png"
 
