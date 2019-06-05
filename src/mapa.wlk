@@ -1,6 +1,6 @@
 import wollok.game.* 
 import paredes.*
-import Gaston.*
+import gaston.*
 
 object nivel1{
 	const vertical = 12

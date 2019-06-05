@@ -1,9 +1,11 @@
-import wollok.game.* 
+import wollok.game.*
+import gaston.*
 import mapa.*
-import Gaston.*
+import tablero.*
 
 class Pared {
 
 	method image() = "muro.png"
-	
+
 }
+
