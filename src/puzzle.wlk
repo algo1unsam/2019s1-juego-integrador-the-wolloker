@@ -3,7 +3,7 @@ import gaston.*
 import mapa.*
 import paredes.*
 import tablero.*
-
+/*aca el jueguito de los numeros */
 object nivel1 {
 
 	const vertical = 12
