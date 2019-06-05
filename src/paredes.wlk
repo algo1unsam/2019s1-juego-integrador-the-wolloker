@@ -1,11 +1,14 @@
 import wollok.game.*
 import gaston.*
 import mapa.*
+import puzzle.*
 import tablero.*
 
-class Pared inherits tablero.CosaEnTablero{
+class Pared inherits CosaEnTablero {
 
-	method image() = "muro.png"
+	override method image() = "muro.png"
+
+	override method dejaPasar() = false
 
 }
 

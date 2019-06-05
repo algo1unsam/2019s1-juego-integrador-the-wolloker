@@ -1,7 +1,7 @@
 import wollok.game.*
 import gaston.*
+import mapa.*
 import paredes.*
-import puzzle.*
 import tablero.*
 
 object nivel1 {

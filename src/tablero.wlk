@@ -2,6 +2,7 @@ import wollok.game.*
 import gaston.*
 import mapa.*
 import paredes.*
+import puzzle.*
 
 class CosaEnTablero {
 
