@@ -1,0 +1,38 @@
+import wollok.game.*
+import plantas.*
+import granjeros.*
+import arbustos.*
+
+program farmVille {
+//	CONFIG	
+	game.title("FARMVILLE DE TAVO")
+	game.height(11)
+	game.width(17)
+	game.ground("ground.png")
+//	VISUALES
+	const mercado1Posi = game.at(3, 7)
+	const mercado2Posi = game.at(8, 7)
+	const mercado3Posi = game.at(13, 7)
+	game.addVisual(hector)
+	game.addVisualIn(new Mercado(monedas = 1500), mercado1Posi) // (0.randomUpTo(17), 0.randomUpTo(9)))
+	game.addVisualIn(new Mercado(monedas = 500), mercado2Posi) // (0.randomUpTo(17), 0.randomUpTo(9)))
+	game.addVisualIn(new Mercado(monedas = 1500), mercado3Posi) // (0.randomUpTo(17), 0.randomUpTo(9)))
+	keyboard.up().onPressDo{ tablero.moverHaciaArriba(hector) }
+	keyboard.down().onPressDo{ tablero.moverHaciaAbajo(hector) }
+	keyboard.left().onPressDo{ tablero.moverHaciaIzq(hector) }
+	keyboard.right().onPressDo{ tablero.moverHaciaDer(hector) }
+	game.errorReporter(hector)
+	keyboard.m().onPressDo{ hector.plantarMaiz() }
+	keyboard.t().onPressDo{ hector.plantarTrigo() }
+	keyboard.o().onPressDo{ hector.plantarTomaco() }
+	keyboard.r().onPressDo{ hector.regar() }
+	keyboard.c().onPressDo{ hector.cosechar() }
+	keyboard.v().onPressDo{ hector.vender() }
+	keyboard.a().onPressDo{ hector.plantarArbusto() }
+	keyboard.space().onPressDo{ hector.cuantoTenes() }
+		// rodea los mercados con arbustos
+	keyboard.q().onPressDo{ tablero.dejarLibreSoloAbajo(mercado1Posi) }
+	keyboard.w().onPressDo{ tablero.dejarLibreSoloAbajo(mercado2Posi) }
+	keyboard.e().onPressDo{ tablero.dejarLibreSoloAbajo(mercado3Posi) }
+	game.start()
+}
