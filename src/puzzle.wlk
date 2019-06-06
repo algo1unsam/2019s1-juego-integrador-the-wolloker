@@ -159,7 +159,7 @@ object puzzle {
 	method ganaste() {
 		 sacarTodo = true
 		keyboard.any().onPressDo({ if (sacarTodo) {
-				self.sacarTodo()
+				self.sacarTodoDelTablero()
 				nivel1.cargar()
 				sacarTodo = false
 			}
@@ -170,7 +170,7 @@ object puzzle {
 		fichasDelPuzzle.fichasInicio()
 	}
 
-	method sacarTodo() {
+	method sacarTodoDelTablero() {
 		controladorDeTablero.sacarTodo()
 	}
 
