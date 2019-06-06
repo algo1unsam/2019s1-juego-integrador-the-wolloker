@@ -21,7 +21,7 @@ class Ficha inherits CosaEnTablero {
 
 }
 
-class CosasDelPuzzle {
+object fichasDelPuzzle {
 
 	var ficha1
 	var ficha2
@@ -45,6 +45,7 @@ class CosasDelPuzzle {
 		ficha8 = new Ficha(imagenFicha = "ficha8.png", posicionCorrecta = self.posicion8(), position = self.posicion1())
 		hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
 	}
+	method hueco()=hueco
 
 	method fichas() = listaFichas
 
@@ -72,10 +73,11 @@ class CosasDelPuzzle {
 
 }
 
-object puzzle inherits CosasDelPuzzle {
+object puzzle {
 
 	method cargar() {
 		self.hacerbordes()
+		fichasDelPuzzle.fichasInicio()
 		self.aparecerFichas()
 	}
 
@@ -87,19 +89,19 @@ object puzzle inherits CosasDelPuzzle {
 	}
 
 	method bordeSup() {
-		self.bordeH(self.posicion1().left(1).up(1))
+		self.bordeH(fichasDelPuzzle.posicion1().left(1).up(1))
 	}
 
 	method bordeInf() {
-		self.bordeH(self.posicion7().left(1).down(1))
+		self.bordeH(fichasDelPuzzle.posicion7().left(1).down(1))
 	}
 
 	method bordeIzq() {
-		self.bordeV(self.posicion7().left(1))
+		self.bordeV(fichasDelPuzzle.posicion7().left(1))
 	}
 
 	method bordeDer() {
-		self.bordeV(self.posicion9().right(1))
+		self.bordeV(fichasDelPuzzle.posicion9().right(1))
 	}
 
 	method bordeH(posicion) {
@@ -111,29 +113,29 @@ object puzzle inherits CosasDelPuzzle {
 	}
 
 	method aparecerFichas() {
-		self.fichas().forEach({ f => game.addVisual(f)})
+		fichasDelPuzzle.fichas().forEach({ f => game.addVisual(f)})
 	}
 
 	method moverIzq() {
-		self.moverA(hueco.position().left(1))
+		self.moverA(fichasDelPuzzle.hueco().position().left(1))
 	}
 
 	method moverDer() {
-		self.moverA(hueco.position().right(1))
+		self.moverA(fichasDelPuzzle.hueco().position().right(1))
 	}
 
 	method moverArr() {
-		self.moverA(hueco.position().up(1))
+		self.moverA(fichasDelPuzzle.hueco().position().up(1))
 	}
 
 	method moverAba() {
-		self.moverA(hueco.position().down(1))
+		self.moverA(fichasDelPuzzle.hueco().position().down(1))
 	}
 
 	method moverA(posicion) {
-		if (self.gano()) self.ganaste() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
-			self.moverFicha(posicion, hueco.position())
-			hueco.position(posicion)
+		if (fichasDelPuzzle.gano()) self.ganaste() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
+			self.moverFicha(posicion, fichasDelPuzzle.hueco().position())
+			fichasDelPuzzle.hueco().position(posicion)
 		}
 	}
 
@@ -142,7 +144,7 @@ object puzzle inherits CosasDelPuzzle {
 	}
 
 	method ganaste() {
-		game.say(hueco, "GANASTE")
+		game.say(fichasDelPuzzle.hueco(), "GANASTE")
 	// continuara??
 	}
 
