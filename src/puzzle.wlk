@@ -148,11 +148,11 @@ object puzzle {
 	// continuara??
 	}
 
-	method reiniciar() {
-//		game.clear()
-		controladorDeTablero.sacarTodo()
-		self.cargar()
-	}
+//	method reiniciar() {
+////		game.clear()
+//		controladorDeTablero.sacarTodo()
+//		self.cargar()
+//	}
 
 }
 
