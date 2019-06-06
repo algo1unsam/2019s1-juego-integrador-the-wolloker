@@ -1,7 +1,7 @@
 import mapa.*
 import paredes.*
 import tablero.*
-import wollok.game.* 
+import wollok.game.*
 import mapa.*
 import gaston.*
 import enemigos.*
@@ -9,36 +9,31 @@ import puerta.*
 import objetos.*
 import sacerdote.*
 
-
-
 program theWolloker {
-	game.addVisualCharacterIn(gaston,game.at(1,1))
-	game.addVisualIn(sacerdote,game.at(11,1))
-	
+	gaston.position(game.at(1, 1))
+	game.addVisual(gaston)
+	game.addVisualIn(sacerdote, game.at(11, 1))
 	game.addVisual(jefe)
 	game.addVisual(espada)
 	game.addVisual(armadura)
 	game.addVisual(casco)
-	
-	game.addVisualIn(enigma,game.at(2,4))
-	game.addVisualIn(zombie,game.at(8,11))
-	game.addVisualIn(puerta,game.at(21,1))
-	
-	
+	game.addVisualIn(enigma, game.at(2, 4))
+	game.addVisualIn(zombie, game.at(8, 11))
+	game.addVisualIn(puerta, game.at(21, 1))
 	game.title("TheWolloker")
 	game.height(15)
 	game.width(25)
-	game.ground("suelo.png")
-
-  	//COLISIONES GASTON
-  	
-  	game.whenCollideDo(gaston,{objeto => if (gaston.estoyMuerto()) objeto.teChocasteConFantasma() else objeto.teChocasteConGaston()})
- 	
- 	game.whenCollideDo(sacerdote, {gaston => if (gaston.estoyMuerto()) gaston.revivir()})
-
-  	
+	game.ground("suelo2.png")
+		// COLISIONES GASTON
+	game.whenCollideDo(gaston, { objeto =>
+		if (gaston.estoyMuerto()) objeto.teChocasteConFantasma() else objeto.teChocasteConGaston()
+	})
+	game.whenCollideDo(sacerdote, { gaston =>
+		if (gaston.estoyMuerto()) gaston.revivir()
+	})
+	game.whenCollideDo(puerta, { e =>
+		if (e.tengoLlave()) puerta.ganaste()
+	})
 	nivel1.cargar()
-	
 	game.start()
-	
 }

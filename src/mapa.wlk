@@ -1,8 +1,13 @@
-import wollok.game.*
-import gaston.*
+import mapa.*
 import paredes.*
-import puzzle.*
 import tablero.*
+import wollok.game.*
+import mapa.*
+import gaston.*
+import enemigos.*
+import puerta.*
+import objetos.*
+import sacerdote.*
 
 object nivel1 {
 
@@ -18,6 +23,7 @@ object nivel1 {
 		self.cargarBordeH(largo)
 		self.cargarLineaCentralV()
 		self.cargarLineaCentralH()
+		
 	}
 
 	method cargarBordeV(x) {

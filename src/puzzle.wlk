@@ -79,10 +79,6 @@ object puzzle {
 	var sacarTodo = false
 
 	method cargar() {
-		game.title("El de los numeritos")
-		game.height(15)
-		game.width(25)
-		game.ground("suelo2.png")
 		self.hacerbordes()
 		self.aparecerFichas()
 		if (not fichasDelPuzzle.gano()) {
@@ -157,7 +153,7 @@ object puzzle {
 	}
 
 	method ganaste() {
-		 sacarTodo = true
+		sacarTodo = true
 		keyboard.any().onPressDo({ if (sacarTodo) {
 				self.sacarTodoDelTablero()
 				nivel1.cargar()

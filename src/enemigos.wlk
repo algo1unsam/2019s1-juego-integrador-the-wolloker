@@ -8,7 +8,7 @@ import objetos.*
 class Enemigos{
 	
 	var property estoyMuerto =  false
-	
+	method dejaPasar() = true
 	
 	method morir(){
 			
