@@ -11,7 +11,7 @@ program puzzle1 {
 	game.width(25)
 	game.ground("suelo2.png")
 	puzzle.cargar()
-//	keyboard.r().onPressDo({ puzzle.reiniciar() })
+	keyboard.r().onPressDo({ puzzle.reiniciar() })
 	keyboard.left().onPressDo({ puzzle.moverDer() })
 	keyboard.right().onPressDo({ puzzle.moverIzq() })
 	keyboard.up().onPressDo({ puzzle.moverAba() })

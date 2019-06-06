@@ -34,17 +34,18 @@ object fichasDelPuzzle {
 	const hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
 	const listaFichas = [ ficha1, ficha2, ficha3, ficha4, ficha5, ficha6, ficha7, ficha8, hueco ]
 
-//	method fichasInicio() {
-//		ficha1 = new Ficha(imagenFicha = "ficha1.png", posicionCorrecta = self.posicion1(), position = self.posicion2())
-//		ficha2 = new Ficha(imagenFicha = "ficha2.png", posicionCorrecta = self.posicion2(), position = self.posicion7())
-//		ficha3 = new Ficha(imagenFicha = "ficha3.png", posicionCorrecta = self.posicion3(), position = self.posicion6())
-//		ficha4 = new Ficha(imagenFicha = "ficha4.png", posicionCorrecta = self.posicion4(), position = self.posicion9())
-//		ficha5 = new Ficha(imagenFicha = "ficha5.png", posicionCorrecta = self.posicion5(), position = self.posicion3())
-//		ficha6 = new Ficha(imagenFicha = "ficha6.png", posicionCorrecta = self.posicion6(), position = self.posicion8())
-//		ficha7 = new Ficha(imagenFicha = "ficha7.png", posicionCorrecta = self.posicion7(), position = self.posicion5())
-//		ficha8 = new Ficha(imagenFicha = "ficha8.png", posicionCorrecta = self.posicion8(), position = self.posicion1())
-//		hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
-//	}
+	method fichasInicio() {
+		ficha1.position(self.posicion2())
+		ficha2.position(self.posicion7())
+		ficha3.position(self.posicion6())
+		ficha4.position(self.posicion9())
+		ficha5.position(self.posicion3())
+		ficha6.position(self.posicion8())
+		ficha7.position(self.posicion5())
+		ficha8.position(self.posicion1())
+		hueco.position(self.posicion4())
+	}
+
 	method hueco() = hueco
 
 	method fichas() = listaFichas
@@ -77,7 +78,6 @@ object puzzle {
 
 	method cargar() {
 		self.hacerbordes()
-//		fichasDelPuzzle.fichasInicio()
 		self.aparecerFichas()
 	}
 
@@ -148,10 +148,9 @@ object puzzle {
 	// continuara??
 	}
 
-//	method reiniciar() {
-////		game.clear()
-//		controladorDeTablero.sacarTodo()
-//		self.cargar()
-//	}
+	method reiniciar() {
+		fichasDelPuzzle.fichasInicio()
+	}
+
 }
 
