@@ -6,15 +6,8 @@ import puzzle.*
 import tablero.*
 
 program puzzle1 {
-	game.title("El de los numeritos")
-	game.height(15)
-	game.width(25)
-	game.ground("suelo2.png")
+	
 	puzzle.cargar()
-	keyboard.r().onPressDo({ puzzle.reiniciar() })
-	keyboard.left().onPressDo({ puzzle.moverDer() })
-	keyboard.right().onPressDo({ puzzle.moverIzq() })
-	keyboard.up().onPressDo({ puzzle.moverAba() })
-	keyboard.down().onPressDo({ puzzle.moverArr() })
+
 	game.start()
 }

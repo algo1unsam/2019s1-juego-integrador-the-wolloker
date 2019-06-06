@@ -66,26 +66,16 @@ object controladorDeTablero {
 
 	method cosasEn(posicion) = game.getObjectsIn(posicion)
 
-	method removerCosasEn(posicion) {
-		self.cosasEn(posicion).forEach({ c => game.removeVisual(c)})
-	}
-
 	method lugarEstaVacio(posicion) = self.cosasEn(posicion).isEmpty()
-
+//*************************************************************************************
+/*ver si sirve para algo lo que sigue */
 	method sacarTodo() {
 		new Range(0,self.limiteSuperior()).forEach({ y => new Range(0, self.limiteDerecho()).forEach({ x => self.removerCosasEn(game.at(x, y))})})
 	}
 
-/*estas son las posiciones del objeto modificadas para que cambie de lado
- * 
- * 
- * method posicionTodoAbajo(posicion) = game.at(posicion.x(), self.limiteCeroY())
+	method removerCosasEn(posicion) {
+		self.cosasEn(posicion).forEach({ c => game.removeVisual(c)})
+	}
 
- * method posicionTodoArriba(posicion) = game.at(posicion.x(), self.limiteSuperior())
-
- * method posicionTodoIzq(posicion) = game.at(self.limiteCeroX(), posicion.y())
-
- * method posicionTodoDer(posicion) = game.at(self.limiteDerecho(), posicion.y())
- */
 }
 
