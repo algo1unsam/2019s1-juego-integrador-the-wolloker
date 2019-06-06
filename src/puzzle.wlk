@@ -76,18 +76,11 @@ object fichasDelPuzzle {
 
 object puzzle {
 
-	var sacarTodo = false
-
 	method cargar() {
+		self.reiniciar()
 		self.hacerbordes()
 		self.aparecerFichas()
-		if (not fichasDelPuzzle.gano()) {
-			keyboard.r().onPressDo({ self.reiniciar()})
-			keyboard.left().onPressDo({ self.moverDer()})
-			keyboard.right().onPressDo({ self.moverIzq()})
-			keyboard.up().onPressDo({ self.moverAba()})
-			keyboard.down().onPressDo({ self.moverArr()})
-		}
+		controladorDeTablero.jugador(self)
 	}
 
 	method hacerbordes() {
@@ -126,19 +119,19 @@ object puzzle {
 	}
 
 	method moverIzq() {
-		self.moverA(fichasDelPuzzle.hueco().position().left(1))
-	}
-
-	method moverDer() {
 		self.moverA(fichasDelPuzzle.hueco().position().right(1))
 	}
 
+	method moverDer() {
+		self.moverA(fichasDelPuzzle.hueco().position().left(1))
+	}
+
 	method moverArr() {
-		self.moverA(fichasDelPuzzle.hueco().position().up(1))
+		self.moverA(fichasDelPuzzle.hueco().position().down(1))
 	}
 
 	method moverAba() {
-		self.moverA(fichasDelPuzzle.hueco().position().down(1))
+		self.moverA(fichasDelPuzzle.hueco().position().up(1))
 	}
 
 	method moverA(posicion) {
@@ -153,11 +146,9 @@ object puzzle {
 	}
 
 	method ganaste() {
-		sacarTodo = true
-		keyboard.any().onPressDo({ if (sacarTodo) {
+		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
 				self.sacarTodoDelTablero()
 				nivel1.cargar()
-				sacarTodo = false
 			}
 		})
 	}
