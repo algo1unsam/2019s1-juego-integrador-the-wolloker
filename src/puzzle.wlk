@@ -17,21 +17,36 @@ class Ficha inherits CosaEnTablero {
 
 	override method image() = imagenFicha
 
-	override method dejaPasar() = false
+	override method dejaPasar() = true
 
 }
 
 class CosasDelPuzzle {
 
-	const ficha1 = new Ficha(imagenFicha = "ficha1.png", posicionCorrecta = self.posicion1(), position = self.posicion2())
-	const ficha2 = new Ficha(imagenFicha = "ficha2.png", posicionCorrecta = self.posicion2(), position = self.posicion7())
-	const ficha3 = new Ficha(imagenFicha = "ficha3.png", posicionCorrecta = self.posicion3(), position = self.posicion6())
-	const ficha4 = new Ficha(imagenFicha = "ficha4.png", posicionCorrecta = self.posicion4(), position = self.posicion9())
-	const ficha5 = new Ficha(imagenFicha = "ficha5.png", posicionCorrecta = self.posicion5(), position = self.posicion3())
-	const ficha6 = new Ficha(imagenFicha = "ficha6.png", posicionCorrecta = self.posicion6(), position = self.posicion8())
-	const ficha7 = new Ficha(imagenFicha = "ficha7.png", posicionCorrecta = self.posicion7(), position = self.posicion5())
-	const ficha8 = new Ficha(imagenFicha = "ficha8.png", posicionCorrecta = self.posicion8(), position = self.posicion1())
-	const hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
+	var ficha1
+	var ficha2
+	var ficha3
+	var ficha4
+	var ficha5
+	var ficha6
+	var ficha7
+	var ficha8
+	var hueco
+	const listaFichas = [ ficha1, ficha2, ficha3, ficha4, ficha5, ficha6, ficha7, ficha8, hueco ]
+
+	method fichasInicio() {
+		ficha1 = new Ficha(imagenFicha = "ficha1.png", posicionCorrecta = self.posicion1(), position = self.posicion2())
+		ficha2 = new Ficha(imagenFicha = "ficha2.png", posicionCorrecta = self.posicion2(), position = self.posicion7())
+		ficha3 = new Ficha(imagenFicha = "ficha3.png", posicionCorrecta = self.posicion3(), position = self.posicion6())
+		ficha4 = new Ficha(imagenFicha = "ficha4.png", posicionCorrecta = self.posicion4(), position = self.posicion9())
+		ficha5 = new Ficha(imagenFicha = "ficha5.png", posicionCorrecta = self.posicion5(), position = self.posicion3())
+		ficha6 = new Ficha(imagenFicha = "ficha6.png", posicionCorrecta = self.posicion6(), position = self.posicion8())
+		ficha7 = new Ficha(imagenFicha = "ficha7.png", posicionCorrecta = self.posicion7(), position = self.posicion5())
+		ficha8 = new Ficha(imagenFicha = "ficha8.png", posicionCorrecta = self.posicion8(), position = self.posicion1())
+		hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
+	}
+
+	method fichas() = listaFichas
 
 	method centro() = game.center()
 
@@ -53,12 +68,15 @@ class CosasDelPuzzle {
 
 	method posicion9() = self.centro().right(1).down(1)
 
+	method gano() = self.fichas().all({ f => f.posicionCorrecta() == f.position() })
+
 }
 
 object puzzle inherits CosasDelPuzzle {
 
 	method cargar() {
 		self.hacerbordes()
+		self.aparecerFichas()
 	}
 
 	method hacerbordes() {
@@ -92,12 +110,46 @@ object puzzle inherits CosasDelPuzzle {
 		new Range(0,2).forEach({ n => game.addVisual(new ParedRoja(position = posicion.up(n)))})
 	}
 
-}
+	method aparecerFichas() {
+		self.fichas().forEach({ f => game.addVisual(f)})
+	}
 
-object armaFichas inherits CosasDelPuzzle {
+	method moverIzq() {
+		self.moverA(hueco.position().left(1))
+	}
 
-	method aparecer() {
-		new Range(1,8).forEach({ n => game.addVisual()})
+	method moverDer() {
+		self.moverA(hueco.position().right(1))
+	}
+
+	method moverArr() {
+		self.moverA(hueco.position().up(1))
+	}
+
+	method moverAba() {
+		self.moverA(hueco.position().down(1))
+	}
+
+	method moverA(posicion) {
+		if (self.gano()) self.ganaste() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
+			self.moverFicha(posicion, hueco.position())
+			hueco.position(posicion)
+		}
+	}
+
+	method moverFicha(inicio, fin) {
+		controladorDeTablero.cosasEn(inicio).get(0).position(fin)
+	}
+
+	method ganaste() {
+		game.say(hueco, "GANASTE")
+	// continuara??
+	}
+
+	method reiniciar() {
+//		game.clear()
+		controladorDeTablero.sacarTodo()
+		self.cargar()
 	}
 
 }

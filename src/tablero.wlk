@@ -9,8 +9,13 @@ class CosaEnTablero {
 	/*cosas en tablero va a ser la superclase de la van a heredar todos los objetos del
 	 *  tablero
 	 */
-	 
-	var property position
+	var position
+
+	method position() = position
+
+	method position(posi) {
+		position = posi
+	}
 
 	method image()
 
@@ -61,7 +66,15 @@ object controladorDeTablero {
 
 	method cosasEn(posicion) = game.getObjectsIn(posicion)
 
+	method removerCosasEn(posicion) {
+		self.cosasEn(posicion).forEach({ c => game.removeVisual(c)})
+	}
+
 	method lugarEstaVacio(posicion) = self.cosasEn(posicion).isEmpty()
+
+	method sacarTodo() {
+		new Range(0,self.limiteSuperior()).forEach({ y => new Range(0, self.limiteDerecho()).forEach({ x => self.removerCosasEn(game.at(x, y))})})
+	}
 
 /*estas son las posiciones del objeto modificadas para que cambie de lado
  * 
