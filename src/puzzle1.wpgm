@@ -1,0 +1,16 @@
+import wollok.game.*
+import gaston.*
+import mapa.*
+import paredes.*
+import puzzle.*
+import tablero.*
+
+program puzzle {
+	
+	game.title("El de los numeritos")
+	game.height(15)
+	game.width(25)
+	game.ground("suelo2.png")
+	puzzle.cargar()
+	game.start()
+}
