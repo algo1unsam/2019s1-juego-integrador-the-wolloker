@@ -76,19 +76,22 @@ object fichasDelPuzzle {
 
 object puzzle {
 
+	var sacarTodo = false
+
 	method cargar() {
 		game.title("El de los numeritos")
 		game.height(15)
 		game.width(25)
 		game.ground("suelo2.png")
-		keyboard.r().onPressDo({ self.reiniciar()})
-		keyboard.left().onPressDo({ self.moverDer()})
-		keyboard.right().onPressDo({ self.moverIzq()})
-		keyboard.up().onPressDo({ self.moverAba()})
-		keyboard.down().onPressDo({ self.moverArr()})
-		keyboard.r().onPressDo({ self.reiniciar()})
 		self.hacerbordes()
 		self.aparecerFichas()
+		if (not fichasDelPuzzle.gano()) {
+			keyboard.r().onPressDo({ self.reiniciar()})
+			keyboard.left().onPressDo({ self.moverDer()})
+			keyboard.right().onPressDo({ self.moverIzq()})
+			keyboard.up().onPressDo({ self.moverAba()})
+			keyboard.down().onPressDo({ self.moverArr()})
+		}
 	}
 
 	method hacerbordes() {
@@ -154,12 +157,21 @@ object puzzle {
 	}
 
 	method ganaste() {
-		game.say(fichasDelPuzzle.hueco(), "GANASTE")
-	// continuara??
+		 sacarTodo = true
+		keyboard.any().onPressDo({ if (sacarTodo) {
+				self.sacarTodo()
+				nivel1.cargar()
+				sacarTodo = false
+			}
+		})
 	}
 
 	method reiniciar() {
 		fichasDelPuzzle.fichasInicio()
+	}
+
+	method sacarTodo() {
+		controladorDeTablero.sacarTodo()
 	}
 
 }
