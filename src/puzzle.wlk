@@ -147,7 +147,7 @@ object puzzle {
 
 	method ganaste() {
 		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
-				self.sacarTodoDelTablero()
+				controladorDeTablero.sacarTodo()
 				nivel1.cargar()
 			}
 		})
@@ -155,10 +155,6 @@ object puzzle {
 
 	method reiniciar() {
 		fichasDelPuzzle.fichasInicio()
-	}
-
-	method sacarTodoDelTablero() {
-		controladorDeTablero.sacarTodo()
 	}
 
 }

@@ -9,13 +9,7 @@ class CosaEnTablero {
 	/*cosas en tablero va a ser la superclase de la van a heredar todos los objetos del
 	 *  tablero
 	 */
-	var position
-
-	method position() = position
-
-	method position(posi) {
-		position = posi
-	}
+	var property position
 
 	method image()
 

@@ -15,7 +15,7 @@ class Fantasma {
 		}
 	}
 
-	method reaparecer() {
+	method reAparecer() {
 		game.addVisual(self)
 	}
 

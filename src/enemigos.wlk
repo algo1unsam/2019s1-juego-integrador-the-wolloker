@@ -54,7 +54,6 @@ object zombie inherits Enemigos {
 
 object jefe inherits Enemigos {
 
-	var posi = game.at(18, 3)
 	var sentidoUp = true
 	var sentidoRight = true
 	var movimientos = 0
@@ -62,11 +61,7 @@ object jefe inherits Enemigos {
 
 	method sentidoUp() = sentidoUp
 
-	override method position() = posi
-
-	override method position(pos) {
-		posi = pos
-	}
+	override method position() = if (position == null) self.position(game.at(18, 3)) else position
 
 	override method image() = "jefe5.png"
 
