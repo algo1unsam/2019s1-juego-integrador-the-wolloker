@@ -55,6 +55,12 @@ object zombie inherits Enemigos {
 object jefe inherits Enemigos {
 
 	var posi = game.at(18, 3)
+	var sentidoUp = true
+	var sentidoRight = true
+	var movimientos = 0
+	var movimientos2 = 0
+
+	method sentidoUp() = sentidoUp
 
 	override method position() = posi
 
@@ -80,6 +86,26 @@ object jefe inherits Enemigos {
 			gaston.morir()
 		}
 	}
+
+	method sumarMov() {
+		movimientos += 1
+		if (self.seMovio(3, movimientos)) {
+			sentidoUp = not sentidoUp
+			movimientos = 0
+		}
+	}
+
+	method sumarMov2() {
+		movimientos2 += 1
+		if (self.seMovio(4, movimientos2)) {
+			sentidoRight = not sentidoRight
+			movimientos2 = 0
+		}
+	}
+
+	method seMovio(cant, contador) = contador == cant
+
+	method sentidoRight() = sentidoRight
 
 }
 

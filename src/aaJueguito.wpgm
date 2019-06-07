@@ -20,5 +20,11 @@ program theWolloker {
 	keyboard.left().onPressDo({ controladorDeTablero.jugador().moverIzq() })
 	keyboard.down().onPressDo({ controladorDeTablero.jugador().moverAba() })
 	keyboard.up().onPressDo({ controladorDeTablero.jugador().moverArr() })
+	game.onTick(200, "prueba jefe", {=>
+		if (jefe.sentidoUp()) jefe.position(jefe.position().up(1)) else jefe.position(jefe.position().down(1))
+		jefe.sumarMov()
+		if (jefe.sentidoRight()) jefe.position(jefe.position().right(1)) else jefe.position(jefe.position().left(1))
+		jefe.sumarMov2()
+	})
 	game.start()
 }
