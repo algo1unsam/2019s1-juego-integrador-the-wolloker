@@ -35,15 +35,13 @@ object nivel1 {
 		self.cargarLineaCentralH()
 		controladorDeTablero.jugador(gaston)
 		jefe.position(game.at(18, 3))
-		game.whenCollideDo(gaston, { objeto =>
-		if (gaston.estoyMuerto()) objeto.teChocasteConFantasma() else objeto.teChocasteConGaston()
-	})
-	game.whenCollideDo(sacerdote, { gaston =>
-		if (gaston.estoyMuerto()) gaston.revivir()
-	})
-	game.whenCollideDo(puerta, { e =>
-		if (e.tengoLlave()) puerta.ganaste()
-	})
+		game.whenCollideDo(controladorDeTablero.jugador(), { objeto => controladorDeTablero.jugador().teChocasteCon(objeto)})
+		game.whenCollideDo(sacerdote, { cosa =>
+			if (not cosa.estaVivo()) sacerdote.teChocasteCon(cosa)
+		})
+		game.whenCollideDo(puerta, { cosa =>
+			if (cosa.tieneLlave()) puerta.ganaste()
+		})
 	}
 
 	method cargarBordeV(x) {

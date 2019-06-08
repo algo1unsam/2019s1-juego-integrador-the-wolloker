@@ -1,9 +1,8 @@
 import tablero.*
 import puzzle.*
+import objetos.*
 
-object puerta inherits CosaEnTablero {
-
-	override method dejaPasar() = true
+object puerta inherits CosaInteractiva {
 
 	override method image() = "puerta4.png"
 
@@ -11,14 +10,6 @@ object puerta inherits CosaEnTablero {
 		controladorDeTablero.sacarTodo()
 		puzzle.cargar()
 	}
-
-}
-
-object llave inherits CosaEnTablero {
-
-	override method dejaPasar() = true
-
-	override method image() = "llave.png"
 
 }
 

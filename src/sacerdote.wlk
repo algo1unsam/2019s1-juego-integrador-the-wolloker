@@ -3,18 +3,15 @@ import mapa.*
 import paredes.*
 import tablero.*
 import gaston.*
+import objetos.*
 import enemigos.*
 
-object sacerdote inherits CosaEnTablero {
-
-	override method dejaPasar() = true
+object sacerdote inherits CosaInteractiva {
 
 	override method image() = "sacerdote.png"
 
-	method teChocasteConGaston() {
-	}
-
-	method teChocasteConFantasma() {
+	override method teChocasteCon(cosa) {
+		cosa.revivir()
 	}
 
 }

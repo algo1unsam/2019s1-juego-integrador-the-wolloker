@@ -4,57 +4,68 @@ import paredes.*
 //import puzzle.*
 import tablero.*
 import enemigos.*
+import objetos.*
 
-object gaston inherits CosaEnTablero {
+object gaston inherits CosaInteractiva {
 
-	var property equipo = []
-	var property enemigos = [ enigma, zombie ]
-	var property tieneArmadura = false
-	var property tieneEspada = false
-	var property espadaYArmadura = false
-	var property estoyMuerto = false
-	var property tengoLlave = false
-	var property fullEquipo = false
+	const property equipo = []
+//	var property enemigos = [ enigma, zombie ]
+	const property derrotados = []
+	var estaVivo = true
 	var property image = "player1.png"
 
-	override method dejaPasar() = true
+	method estaVivo() = estaVivo
 
 	override method image() = "player1.png"
 
+	method tieneArmadura() = equipo.contains(armadura)
+
+	method tieneEspada() = equipo.contains(espada)
+
+	method tieneCasco() = equipo.contains(casco)
+
+	method espadaYArmadura() = self.tieneArmadura() and self.tieneEspada()
+
+	method fullEquipo() = self.espadaYArmadura() and self.tieneCasco()
+
+	method puedeLevantar() = estaVivo
+
 	method conCasco() {
-		fullEquipo = true
 		image = "player5.png"
 	}
 
 	method conArmadura() {
-		tieneArmadura = true
 		image = "player2.png"
 	}
 
 	method conEspada() {
-		tieneEspada = true
 		image = "player4.png"
 	}
 
 	method conEspadaYArmadura() {
-		espadaYArmadura = true
 		image = "player3.png"
 	}
 
-	method tieneLlave() {
-		tengoLlave = true
-	}
+	method tieneLlave() = equipo.contains(llave)
 
 	method morir() {
-		estoyMuerto = true
-		image = gastonMuerto.image()
+		estaVivo = false
+		image = "casper.png"
 		equipo.forEach{ objeto => objeto.reaparecer()}
 		self.equipo().clear()
 	}
+	method derrotasteA(enemy){
+		derrotados.add(enemy)
+	}
 
 	method revivir() {
-		estoyMuerto = false
-		image = self.image()
+		estaVivo = true
+		image = "player1.png"
+		self.position(self.position().left(1))
+	}
+
+	override method teChocasteCon(cosa) {
+		if (estaVivo) cosa.teChocasteCon(self)
 	}
 
 	method moverIzq() {
@@ -74,16 +85,8 @@ object gaston inherits CosaEnTablero {
 	}
 
 	method moverA(posicion) {
-		if (controladorDeTablero.cosasDejanPasar(posicion)) {
-			self.position(posicion)
-		}
+		if (controladorDeTablero.cosasDejanPasar(posicion)) self.position(posicion)
 	}
-
-}
-
-object gastonMuerto {
-
-	method image() = "casper.png"
 
 }
 

@@ -5,21 +5,13 @@ import tablero.*
 import gaston.*
 import objetos.*
 
-class Enemigos inherits CosaEnTablero {
-
-	var property estoyMuerto = false
+class Enemigos inherits CosaInteractiva {
 
 	override method dejaPasar() = true
 
-	method morir() {
-		estoyMuerto = true
+	method morir(cosa) {
 		game.removeVisual(self)
-	}
-
-	method teChocasteConFantasma() {
-		if (gaston.estoyMuerto()) {
-			game.say(gaston, "Estoy muerto!")
-		}
+		cosa.derrotasteA(self)
 	}
 
 }
@@ -28,11 +20,11 @@ object enigma inherits Enemigos {
 
 	override method image() = "enigma.png"
 
-	method teChocasteConGaston() {
-		if (gaston.tieneArmadura()) {
-			self.morir()
+	override method teChocasteCon(cosa) {
+		if (cosa.tieneArmadura()) {
+			self.morir(cosa)
 		} else {
-			gaston.morir()
+			cosa.morir()
 		}
 	}
 
@@ -42,11 +34,11 @@ object zombie inherits Enemigos {
 
 	override method image() = "zombie.png"
 
-	method teChocasteConGaston() {
+	override method teChocasteCon(cosa) {
 		if (gaston.espadaYArmadura()) {
-			self.morir()
+			self.morir(cosa)
 		} else {
-			gaston.morir()
+			cosa.morir()
 		}
 	}
 
@@ -58,27 +50,31 @@ object jefe inherits Enemigos {
 	var sentidoRight = true
 	var movimientos = 0
 	var movimientos2 = 0
+	const esbirros = [ enigma, zombie ]
 
 	method sentidoUp() = sentidoUp
 
-	override method position() = if (position == null) self.position(game.at(18, 3)) else position
+	override method position() {
+		if (position == null) {
+			self.position(game.at(18, 3))
+			return position
+		} else return position
+	}
 
 	override method image() = "jefe5.png"
 
-	method todosLosEnemigosMuertos() {
-		return gaston.enemigos().all{ enemigo => enemigo.estoyMuerto() }
-	}
+	method todosLosEnemigosMuertos(cosa) = cosa.derrotados().asSet() == esbirros.asSet()
 
-	override method morir() {
+	override method morir(cosa) {
 		game.removeVisual(self)
 		llave.aparecer()
 	}
 
-	method teChocasteConGaston() {
-		if (gaston.fullEquipo() and self.todosLosEnemigosMuertos()) {
-			self.morir()
+	override method teChocasteCon(cosa) {
+		if (cosa.fullEquipo() and self.todosLosEnemigosMuertos(cosa)) {
+			self.morir(cosa)
 		} else {
-			gaston.morir()
+			cosa.morir()
 		}
 	}
 
