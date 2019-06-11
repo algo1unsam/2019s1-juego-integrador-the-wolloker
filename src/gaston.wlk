@@ -1,7 +1,7 @@
 import wollok.game.*
 import mapa.*
 import paredes.*
-//import puzzle.*
+import puzzle.*
 import tablero.*
 import enemigos.*
 import objetos.*
@@ -9,7 +9,6 @@ import objetos.*
 object gaston inherits CosaInteractiva {
 
 	const property equipo = []
-//	var property enemigos = [ enigma, zombie ]
 	const property derrotados = []
 	var estaVivo = true
 	var property image = "player1.png"
@@ -51,10 +50,16 @@ object gaston inherits CosaInteractiva {
 	method morir() {
 		estaVivo = false
 		image = "casper.png"
-		equipo.forEach{ objeto => objeto.reaparecer()}
+		self.dejarEquipo()
 		self.equipo().clear()
 	}
-	method derrotasteA(enemy){
+
+	method dejarEquipo() {
+		equipo.forEach{ objeto => objeto.aparecer()}
+		self.equipo().clear()
+	}
+
+	method derrotasteA(enemy) {
 		derrotados.add(enemy)
 	}
 
@@ -62,6 +67,12 @@ object gaston inherits CosaInteractiva {
 		estaVivo = true
 		image = "player1.png"
 		self.position(self.position().left(1))
+	}
+
+	method reiniciar() {
+		self.dejarEquipo()
+		self.revivir()
+		derrotados.clear()
 	}
 
 	override method teChocasteCon(cosa) {

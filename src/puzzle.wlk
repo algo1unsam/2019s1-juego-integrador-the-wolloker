@@ -35,15 +35,24 @@ object fichasDelPuzzle {
 	const listaFichas = [ ficha1, ficha2, ficha3, ficha4, ficha5, ficha6, ficha7, ficha8, hueco ]
 
 	method fichasInicio() {
-		ficha1.position(self.posicion2())
-		ficha2.position(self.posicion7())
-		ficha3.position(self.posicion6())
-		ficha4.position(self.posicion9())
-		ficha5.position(self.posicion3())
-		ficha6.position(self.posicion8())
-		ficha7.position(self.posicion5())
-		ficha8.position(self.posicion1())
-		hueco.position(self.posicion4())
+//		ficha1.position(self.posicion2())
+//		ficha2.position(self.posicion7())
+//		ficha3.position(self.posicion6())
+//		ficha4.position(self.posicion9())
+//		ficha5.position(self.posicion3())
+//		ficha6.position(self.posicion8())
+//		ficha7.position(self.posicion5())
+//		ficha8.position(self.posicion1())
+//		hueco.position(self.posicion4())
+		ficha1.position(self.posicion1())
+		ficha2.position(self.posicion2())
+		ficha3.position(self.posicion3())
+		ficha4.position(self.posicion4())
+		ficha5.position(self.posicion5())
+		ficha6.position(self.posicion6())
+		ficha7.position(self.posicion7())
+		ficha8.position(self.posicion9())
+		hueco.position(self.posicion8())
 	}
 
 	method hueco() = hueco
@@ -148,6 +157,7 @@ object puzzle {
 	method ganaste() {
 		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
 				controladorDeTablero.sacarTodo()
+				gaston.reiniciar()
 				nivel1.cargar()
 			}
 		})
