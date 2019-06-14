@@ -46,17 +46,11 @@ object zombie inherits Enemigos {
 
 object jefe inherits Enemigos {
 
-	var sentidoUp = true
-	var sentidoRight = true
-	var movimientos = 0
-	var movimientos2 = 0
 	const esbirros = [ enigma, zombie ]
-
-	method sentidoUp() = sentidoUp
 
 	override method position() {
 		if (position == null) {
-			self.position(game.at(18, 3))
+			self.position(game.at(17, 1))
 		}
 		return position
 	}
@@ -77,26 +71,6 @@ object jefe inherits Enemigos {
 			cosa.morir()
 		}
 	}
-
-	method sumarMov() {
-		movimientos += 1
-		if (self.seMovio(3, movimientos)) {
-			sentidoUp = not sentidoUp
-			movimientos = 0
-		}
-	}
-
-	method sumarMov2() {
-		movimientos2 += 1
-		if (self.seMovio(4, movimientos2)) {
-			sentidoRight = not sentidoRight
-			movimientos2 = 0
-		}
-	}
-
-	method seMovio(cant, contador) = contador == cant
-
-	method sentidoRight() = sentidoRight
 
 }
 

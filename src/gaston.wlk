@@ -13,6 +13,13 @@ object gaston inherits CosaInteractiva {
 	var estaVivo = true
 	var property image = "player1.png"
 
+	override method position() {
+		if (position == null) {
+			self.position(game.at(1, 1))
+		}
+		return position
+	}
+
 	method estaVivo() = estaVivo
 
 	override method image() = "player1.png"
@@ -81,25 +88,7 @@ object gaston inherits CosaInteractiva {
 		if (estaVivo) cosa.teChocasteCon(self)
 	}
 
-	method moverIzq() {
-		self.moverA(self.position().left(1))
-	}
 
-	method moverDer() {
-		self.moverA(self.position().right(1))
-	}
-
-	method moverArr() {
-		self.moverA(self.position().up(1))
-	}
-
-	method moverAba() {
-		self.moverA(self.position().down(1))
-	}
-
-	method moverA(posicion) {
-		if (controladorDeTablero.cosasDejanPasar(posicion)) self.position(posicion)
-	}
 
 }
 

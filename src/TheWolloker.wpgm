@@ -1,0 +1,23 @@
+import mapa.*
+import paredes.*
+import tablero.*
+import wollok.game.*
+import mapa.*
+import gaston.*
+import enemigos.*
+import puerta.*
+import objetos.*
+import objetosNivelDos.*
+import sacerdote.*
+import nivel1.*
+program theWolloker {
+	game.title("The Wolloker")
+	game.height(15)
+	game.width(25)
+	game.ground("suelo2.png")
+		
+	nivel1.cargar()
+
+	
+	game.start()
+}
