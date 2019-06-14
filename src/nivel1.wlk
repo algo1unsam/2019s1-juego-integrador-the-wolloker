@@ -36,7 +36,7 @@ object nivel1 {
 	}
 
 	method cargarLineaCentralV() {
-		new Range(1,largo-2).forEach({ n => game.addVisualIn(new Pared(), game.at(vertical, n))})
+		new Range(1,largo-3).forEach({ n => game.addVisualIn(new Pared(), game.at(vertical, n))})
 	}
 
 	method cargarLineaCentralH() {

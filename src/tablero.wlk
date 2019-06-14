@@ -31,11 +31,11 @@ object movedor {
 	}
 
 	method moverEnigma() {
-		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 2)
+		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 1)
 	}
 
 	method moverZombie() {
-		self.darMovimiento(zombie, 800, "movimiento Zombie", 4, 0)
+		self.darMovimiento(zombie, 500, "movimiento Zombie", 3, 2)
 	}
 
 	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH) {
@@ -86,58 +86,7 @@ class Limitador {
 
 }
 
-//	var sentidoUp = true
-//	var sentidoRight = true
-//	var movimientos = 0
-//	var movimientos2 = 0
-//	const esbirros = [ enigma, zombie ]
-//
-//	method sentidoUp() = sentidoUp
-//
-//	override method position() {
-//		if (position == null) {
-//			self.position(game.at(18, 3))
-//		}
-//		return position
-//	}
-//
-//	override method image() = "jefe5.png"
-//
-//	method todosLosEnemigosMuertos(cosa) = cosa.derrotados().asSet() == esbirros.asSet()
-//
-//	override method morir(cosa) {
-//		game.removeVisual(self)
-//		llave.aparecer()
-//	}
-//
-//	override method teChocasteCon(cosa) {
-//		if (cosa.fullEquipo() and self.todosLosEnemigosMuertos(cosa)) {
-//			self.morir(cosa)
-//		} else {
-//			cosa.morir()
-//		}
-//	}
-//
-//	method sumarMov() {
-//		movimientos += 1
-//		if (self.seMovio(3, movimientos)) {
-//			sentidoUp = not sentidoUp
-//			movimientos = 0
-//		}
-//	}
-//
-//	method sumarMov2() {
-//		movimientos2 += 1
-//		if (self.seMovio(4, movimientos2)) {
-//			sentidoRight = not sentidoRight
-//			movimientos2 = 0
-//		}
-//	}
-//
-//	method seMovio(cant, contador) = contador == cant
-//
-//	method sentidoRight() = sentidoRight
-//
+
 object controladorDeTablero {
 
 	var property limiteSuperior = (game.height() - 1)
@@ -195,7 +144,8 @@ object controladorDeTablero {
 	}
 
 	method moverA(posicion, cosa) {
-		if (self.cosasDejanPasar(posicion)) cosa.position(posicion)
+		cosa.moverseA(posicion)
+		
 	}
 
 }

@@ -85,11 +85,17 @@ object fichasDelPuzzle {
 
 object puzzle {
 
+	method position() = fichasDelPuzzle.hueco().position()
+
 	method cargar() {
+		controladorDeTablero.sacarTodo()
 		self.reiniciar()
 		self.hacerbordes()
 		self.aparecerFichas()
-//		controladorDeTablero.jugador(self)
+		keyboard.left().onPressDo({ controladorDeTablero.moverDer(self)})
+		keyboard.right().onPressDo({ controladorDeTablero.moverIzq(self)})
+		keyboard.up().onPressDo({ controladorDeTablero.moverAba(self)})
+		keyboard.down().onPressDo({ controladorDeTablero.moverArr(self)})
 	}
 
 	method hacerbordes() {
@@ -127,24 +133,8 @@ object puzzle {
 		fichasDelPuzzle.fichas().forEach({ f => game.addVisual(f)})
 	}
 
-	method moverIzq() {
-		self.moverA(fichasDelPuzzle.hueco().position().right(1))
-	}
-
-	method moverDer() {
-		self.moverA(fichasDelPuzzle.hueco().position().left(1))
-	}
-
-	method moverArr() {
-		self.moverA(fichasDelPuzzle.hueco().position().down(1))
-	}
-
-	method moverAba() {
-		self.moverA(fichasDelPuzzle.hueco().position().up(1))
-	}
-
-	method moverA(posicion) {
-		if (fichasDelPuzzle.gano()) self.ganaste() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
+	method moverseA(posicion) {
+		if (fichasDelPuzzle.gano()) self.gano() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
 			self.moverFicha(posicion, fichasDelPuzzle.hueco().position())
 			fichasDelPuzzle.hueco().position(posicion)
 		}
@@ -154,11 +144,9 @@ object puzzle {
 		controladorDeTablero.cosasEn(inicio).get(0).position(fin)
 	}
 
-	method ganaste() {
+	method gano() {
 		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
-				controladorDeTablero.sacarTodo()
-				gaston.reiniciar()
-				nivel1.cargar()
+				nivel2.cargar()
 			}
 		})
 	}

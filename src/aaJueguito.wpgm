@@ -1,57 +1,28 @@
-import mapa.*
-import paredes.*
-import tablero.*
-import wollok.game.*
-import mapa.*
-import gaston.*
-import enemigos.*
-import puerta.*
-import objetos.*
-import objetosNivelDos.*
-import sacerdote.*
 
-program theWolloker {
-	game.title("TheWolloker")
-	game.height(15)
-	game.width(25)
-	game.ground("suelo2.png")
-		// COLISIONES GASTON
-	nivel1.cargar()
-//	nivel2.cargar()
-	keyboard.right().onPressDo({ gaston.moverDer() })
-	keyboard.left().onPressDo({ gaston.moverIzq() })
-	keyboard.down().onPressDo({ gaston.moverAba() })
-	keyboard.up().onPressDo({ gaston.moverArr() })
-	game.onTick(200, "prueba jefe", {=>
-		if (jefe.sentidoUp()) jefe.position(jefe.position().up(1)) else jefe.position(jefe.position().down(1))
-		jefe.sumarMov()
-		if (jefe.sentidoRight()) jefe.position(jefe.position().right(1)) else jefe.position(jefe.position().left(1))
-		jefe.sumarMov2()
-	})
-	game.onTick(30, "bola arriba1", {=>
-			bolaArriba1.position(bolaArriba1.position().up(1))
-			bolaArriba1.sumarMov()
-	})
-	game.onTick(60, "bola arriba2", {=>
-			bolaArriba2.position(bolaArriba2.position().up(1))
-			bolaArriba2.sumarMov()
-	})
-	game.onTick(20, "flecha arriba1", {=>
-			flechaArriba1.position(flechaArriba1.position().up(1))
-			flechaArriba1.sumarMov()
-	})
-	game.onTick(50, "flecha abajo1", {=>
-			flechaAbajo1.position(flechaAbajo1.position().down(1))
-			flechaAbajo1.sumarMov()
-	})
-	game.onTick(60, "bola abajo1", {=>
-			bolaAbajo1.position(bolaAbajo1.position().down(1))
-			bolaAbajo1.sumarMov()
-	})
-	game.onTick(25, "bola abajo2", {=>
-			bolaAbajo2.position(bolaAbajo2.position().down(1))
-			bolaAbajo2.sumarMov()
-	})
-	
-	game.start()
-}
+//	
+//	game.onTick(30, "bola arriba1", {=>
+//			bolaArriba1.position(bolaArriba1.position().up(1))
+//			bolaArriba1.sumarMov()
+//	})
+//	game.onTick(60, "bola arriba2", {=>
+//			bolaArriba2.position(bolaArriba2.position().up(1))
+//			bolaArriba2.sumarMov()
+//	})
+//	game.onTick(20, "flecha arriba1", {=>
+//			flechaArriba1.position(flechaArriba1.position().up(1))
+//			flechaArriba1.sumarMov()
+//	})
+//	game.onTick(50, "flecha abajo1", {=>
+//			flechaAbajo1.position(flechaAbajo1.position().down(1))
+//			flechaAbajo1.sumarMov()
+//	})
+//	game.onTick(60, "bola abajo1", {=>
+//			bolaAbajo1.position(bolaAbajo1.position().down(1))
+//			bolaAbajo1.sumarMov()
+//	})
+//	game.onTick(25, "bola abajo2", {=>
+//			bolaAbajo2.position(bolaAbajo2.position().down(1))
+//			bolaAbajo2.sumarMov()
+//	})
+//	
+//

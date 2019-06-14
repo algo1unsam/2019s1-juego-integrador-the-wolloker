@@ -40,7 +40,7 @@ object enigma inherits Enemigos {
 object zombie inherits Enemigos {
 override method position() {
 		if (position == null) {
-			self.position(game.at(9,7))
+			self.position(game.at(8,7))
 		}
 		return position
 	}

@@ -78,17 +78,13 @@ object gaston inherits CosaInteractiva {
 		}
 	}
 
-	method reiniciar() {
-		self.dejarEquipo()
-		self.revivir()
-		derrotados.clear()
-	}
-
 	override method teChocasteCon(cosa) {
 		if (estaVivo) cosa.teChocasteCon(self)
 	}
 
-
+	method moverseA(posicion) {
+		if (controladorDeTablero.cosasDejanPasar(posicion) or not self.estaVivo()) self.position(posicion)
+	}
 
 }
 

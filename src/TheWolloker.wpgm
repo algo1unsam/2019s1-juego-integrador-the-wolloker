@@ -10,14 +10,14 @@ import objetos.*
 import objetosNivelDos.*
 import sacerdote.*
 import nivel1.*
+import puzzle.*
+
 program theWolloker {
 	game.title("The Wolloker")
 	game.height(15)
 	game.width(25)
 	game.ground("suelo2.png")
-		
-	nivel1.cargar()
-
-	
+//	nivel1.cargar()
+	puzzle.cargar()
 	game.start()
 }
