@@ -64,9 +64,11 @@ object gaston inherits CosaInteractiva {
 	}
 
 	method revivir() {
-		estaVivo = true
-		image = "player1.png"
-		self.position(self.position().left(1))
+		if (not self.estaVivo()) {
+			estaVivo = true
+			image = "player1.png"
+			self.position(self.position().left(1))
+		}
 	}
 
 	method reiniciar() {

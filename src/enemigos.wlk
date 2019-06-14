@@ -57,8 +57,8 @@ object jefe inherits Enemigos {
 	override method position() {
 		if (position == null) {
 			self.position(game.at(18, 3))
-			return position
-		} else return position
+		}
+		return position
 	}
 
 	override method image() = "jefe5.png"

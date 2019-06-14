@@ -34,12 +34,10 @@ object nivel1 {
 		self.cargarBordeH(largo)
 		self.cargarLineaCentralV()
 		self.cargarLineaCentralH()
-		controladorDeTablero.jugador(gaston)
+//		controladorDeTablero.jugador(gaston)
 		jefe.position(game.at(18, 3))
-		game.whenCollideDo(controladorDeTablero.jugador(), { objeto => controladorDeTablero.jugador().teChocasteCon(objeto)})
-		game.whenCollideDo(sacerdote, { cosa =>
-			if (not cosa.estaVivo()) sacerdote.teChocasteCon(cosa)
-		})
+		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
+		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
 		game.whenCollideDo(puerta, { cosa =>
 			if (cosa.tieneLlave()) puerta.ganaste()
 		})
@@ -64,9 +62,10 @@ object nivel1 {
 }
 
 object nivel2 {
+
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
-	
+
 	method cargar() {
 		gaston.position(game.at(1, 6))
 		game.addVisual(gaston)
@@ -83,27 +82,20 @@ object nivel2 {
 		game.addVisualIn(new Mago(), game.at(15, 12))
 		game.addVisual(bolaArriba2)
 		game.addVisualIn(new Mago(), game.at(18, 1))
-		
 		game.addVisualIn(puerta, game.at(22, 6))
-		
 		self.cargarBordeV(0)
 		self.cargarBordeV(ancho)
 		self.cargarBordeH(0)
 		self.cargarBordeH(largo)
-		
-		controladorDeTablero.jugador(gaston)
-		//jefe.position(game.at(18, 3))
-		game.whenCollideDo(gaston, { objeto =>
-		if (gaston.estoyMuerto()) objeto.teChocasteConFantasma() else objeto.teChocasteConGaston()
-	})
-	game.whenCollideDo(sacerdote, { gaston =>
-		if (gaston.estoyMuerto()) gaston.revivir()
-	})
-	game.whenCollideDo(puerta, { e =>
-		if (e.tengoLlave()) puerta.ganaste()
-	})
-	}
 	
+			
+	game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
+		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
+		game.whenCollideDo(puerta, { e =>
+			 puerta.gameOver()
+		})
+	}
+
 	method cargarBordeV(x) {
 		new Range(0,largo).forEach({ n => game.addVisualIn(new Pared(), game.at(x, n))})
 	}
@@ -111,5 +103,6 @@ object nivel2 {
 	method cargarBordeH(y) {
 		new Range(1,ancho-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, y))})
 	}
+
 }
 

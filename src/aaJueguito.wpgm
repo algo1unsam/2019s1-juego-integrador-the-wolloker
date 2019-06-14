@@ -16,12 +16,12 @@ program theWolloker {
 	game.width(25)
 	game.ground("suelo2.png")
 		// COLISIONES GASTON
-	//nivel1.cargar()
-	nivel2.cargar()
-	keyboard.right().onPressDo({ controladorDeTablero.jugador().moverDer() })
-	keyboard.left().onPressDo({ controladorDeTablero.jugador().moverIzq() })
-	keyboard.down().onPressDo({ controladorDeTablero.jugador().moverAba() })
-	keyboard.up().onPressDo({ controladorDeTablero.jugador().moverArr() })
+	nivel1.cargar()
+//	nivel2.cargar()
+	keyboard.right().onPressDo({ gaston.moverDer() })
+	keyboard.left().onPressDo({ gaston.moverIzq() })
+	keyboard.down().onPressDo({ gaston.moverAba() })
+	keyboard.up().onPressDo({ gaston.moverArr() })
 	game.onTick(200, "prueba jefe", {=>
 		if (jefe.sentidoUp()) jefe.position(jefe.position().up(1)) else jefe.position(jefe.position().down(1))
 		jefe.sumarMov()

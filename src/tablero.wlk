@@ -39,7 +39,7 @@ object controladorDeTablero {
 	var property limiteDerecho = (game.width() - 1)
 	var property limiteCeroX = 0
 	var property limiteCeroY = 0
-	var property jugador=gaston
+//	var property jugador=gaston
 	/*aca se manda la proxima ubicacion */
 	method sePuedeMoverA(posicion) = not self.seVaDelTablero(posicion) and (self.cosasDejanPasar(posicion) or self.lugarEstaVacio(posicion))
 

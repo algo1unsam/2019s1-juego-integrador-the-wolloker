@@ -89,7 +89,7 @@ object puzzle {
 		self.reiniciar()
 		self.hacerbordes()
 		self.aparecerFichas()
-		controladorDeTablero.jugador(self)
+//		controladorDeTablero.jugador(self)
 	}
 
 	method hacerbordes() {
