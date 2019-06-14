@@ -18,23 +18,50 @@ class CosaEnTablero {
 
 }
 
-object pepita {
+object movedor {
+
+	method moverNivel1() {
+		self.moverJefe()
+		self.moverEnigma()
+		self.moverZombie()
+	}
+
+	method moverJefe() {
+		self.darMovimiento(jefe, 200, "movimiento jefe", 4, 2)
+	}
+
+	method moverEnigma() {
+		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 2)
+	}
+
+	method moverZombie() {
+		self.darMovimiento(zombie, 800, "movimiento Zombie", 4, 0)
+	}
+
+	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH) {
+		const objeto = new Limitador(limV = limiteV, limH = limiteH)
+		game.onTick(tiempo, nombre, {=>
+			if (limiteV != 0) {
+				if (objeto.up()) cosa.position(cosa.position().up(1)) else cosa.position(cosa.position().down(1))
+				objeto.sumarV()
+			}
+			if (limiteH != 0) {
+				if (objeto.right()) cosa.position(cosa.position().right(1)) else cosa.position(cosa.position().left(1))
+				objeto.sumarH()
+			}
+		})
+	}
+
+}
+
+class Limitador {
 
 	var pasosV = 0
 	var pasosH = 0
-	var up = true
-	var right = true
-	const limV = 4
-	const limH = 2
-
-	method moverNivel1() {
-		game.onTick(200, "movimiento jefe", {=>
-			if (up) jefe.position(jefe.position().up(1)) else jefe.position(jefe.position().down(1))
-			self.sumarV()
-			if (right) jefe.position(jefe.position().right(1)) else jefe.position(jefe.position().left(1))
-			self.sumarH()
-		})
-	}
+	var property up = true
+	var property right = true
+	const limV
+	const limH
 
 	method sumarV() {
 		pasosV += 1

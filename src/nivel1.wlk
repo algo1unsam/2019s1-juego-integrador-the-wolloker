@@ -11,7 +11,7 @@ import tablero.*
 object nivel1 {
 
 	const vertical = 12
-	const horizontal = 7
+	const horizontal = 6
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
 
@@ -24,7 +24,7 @@ object nivel1 {
 		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
 		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
 		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1()})
-		pepita.moverNivel1()
+		movedor.moverNivel1()
 	}
 
 	method cargarBordeV(x) {
@@ -50,8 +50,8 @@ object nivel1 {
 		game.addVisual(espada)
 		game.addVisual(armadura)
 		game.addVisual(casco)
-		game.addVisualIn(enigma, game.at(2, 4))
-		game.addVisualIn(zombie, game.at(8, 11))
+		game.addVisual(enigma)
+		game.addVisual(zombie)
 		game.addVisualIn(puerta, game.at(21, 1))
 		self.cargarBordeV(0)
 		self.cargarBordeV(ancho)
