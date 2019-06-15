@@ -1,5 +1,5 @@
 import wollok.game.*
-import mapa.*
+import nivel2.*
 import paredes.*
 import tablero.*
 import gaston.*

@@ -1,6 +1,6 @@
 import wollok.game.*
 import gaston.*
-import mapa.*
+import nivel2.*
 import puzzle.*
 import tablero.*
 

@@ -1,6 +1,6 @@
 import wollok.game.*
 import gaston.*
-import mapa.*
+import nivel2.*
 import paredes.*
 import puzzle.*
 import enemigos.*
@@ -61,10 +61,10 @@ object movedor {
 //		self.moverFlecha1Up()
 //		self.moverFlecha2Up()
 	}
+
 //	method moverBola1Up() {
 //		self.darMovimiento(bolaArriba1, 30, "bola arriba1", 3, 2)
 //	}
-
 //	
 //	game.onTick(30, "bola arriba1", {=>
 //			bolaArriba1.position(bolaArriba1.position().up(1))
