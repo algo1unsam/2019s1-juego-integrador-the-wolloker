@@ -1,5 +1,5 @@
 import wollok.game.*
-import mapa.*
+
 import paredes.*
 import puzzle.*
 import tablero.*

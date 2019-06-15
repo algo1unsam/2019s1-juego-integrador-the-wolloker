@@ -4,6 +4,7 @@ import mapa.*
 import paredes.*
 import puzzle.*
 import enemigos.*
+import nivel2.*
 
 class CosaEnTablero {
 
@@ -52,6 +53,45 @@ object movedor {
 		})
 	}
 
+	method moverNivel2() {
+//		self.moverBola1Up()
+//		self.moverBola2Up()
+//		self.moverBola1Down()
+//		self.moverBola2Down()
+//		self.moverFlecha1Up()
+//		self.moverFlecha2Up()
+	}
+//	method moverBola1Up() {
+//		self.darMovimiento(bolaArriba1, 30, "bola arriba1", 3, 2)
+//	}
+
+//	
+//	game.onTick(30, "bola arriba1", {=>
+//			bolaArriba1.position(bolaArriba1.position().up(1))
+//			bolaArriba1.sumarMov()
+//	})
+//	game.onTick(60, "bola arriba2", {=>
+//			bolaArriba2.position(bolaArriba2.position().up(1))
+//			bolaArriba2.sumarMov()
+//	})
+//	game.onTick(20, "flecha arriba1", {=>
+//			flechaArriba1.position(flechaArriba1.position().up(1))
+//			flechaArriba1.sumarMov()
+//	})
+//	game.onTick(50, "flecha abajo1", {=>
+//			flechaAbajo1.position(flechaAbajo1.position().down(1))
+//			flechaAbajo1.sumarMov()
+//	})
+//	game.onTick(60, "bola abajo1", {=>
+//			bolaAbajo1.position(bolaAbajo1.position().down(1))
+//			bolaAbajo1.sumarMov()
+//	})
+//	game.onTick(25, "bola abajo2", {=>
+//			bolaAbajo2.position(bolaAbajo2.position().down(1))
+//			bolaAbajo2.sumarMov()
+//	})
+//	
+//
 }
 
 class Limitador {
@@ -85,7 +125,6 @@ class Limitador {
 	}
 
 }
-
 
 object controladorDeTablero {
 
@@ -145,7 +184,6 @@ object controladorDeTablero {
 
 	method moverA(posicion, cosa) {
 		cosa.moverseA(posicion)
-		
 	}
 
 }
