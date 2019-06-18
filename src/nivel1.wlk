@@ -7,6 +7,7 @@ import objetos.*
 import sacerdote.*
 import puzzle.*
 import tablero.*
+import objetosNivelDos.*
 
 object nivel1 {
 
@@ -14,6 +15,31 @@ object nivel1 {
 	const horizontal = 6
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
+
+	method plantarBomba() {
+		const bombita = new Proyectil(imagen = "muro2.png", position = game.at(14.randomUpTo(ancho - 2), 2.randomUpTo(largo - 2)))
+		const fireD = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().down(1))
+		const fireU = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().up(1))
+		const fireR = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().right(1))
+		const fireL = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().left(1))
+		const apagar = { game.removeVisual(fireD)
+			game.removeVisual(fireU)
+			game.removeVisual(fireR)
+			game.removeVisual(fireL)
+			self.plantarBomba()
+		}
+		const explotar = { game.removeVisual(bombita)
+			game.addVisual(fireD)
+			game.addVisual(fireU)
+			game.addVisual(fireR)
+			game.addVisual(fireL)
+			scheduler.schedule(600, apagar)
+		}
+		bombita.aparecer()
+		scheduler.schedule(700, explotar)
+	}
+
+
 
 	method cargar() {
 		self.agregarCosas()

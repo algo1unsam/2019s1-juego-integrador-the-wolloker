@@ -31,6 +31,7 @@ class Proyectil inherits CosaInteractiva {
 	override method teChocasteCon(cosa) {
 		cosa.morir()
 	}
+	method tieneLlave() = false
 
 }
 

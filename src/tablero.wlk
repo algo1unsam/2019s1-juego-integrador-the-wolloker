@@ -21,20 +21,20 @@ class CosaEnTablero {
 
 }
 
-//object scheduler {
-//
-//	var count = 0
-//
-//	method schedule(milliseconds, action) {
-//		count += 1
-//		const name = "scheduler" + count
-//		game.onTick(milliseconds, name, { =>
-//			action.apply()
-//			game.removeTickEvent(name)
-//		})
-//	}
-//
-//}
+object scheduler {
+
+	var count = 0
+
+	method schedule(milliseconds, action) {
+		count += 1
+		const name = "scheduler" + count
+		game.onTick(milliseconds, name, { =>
+			action.apply()
+			game.removeTickEvent(name)
+		})
+	}
+
+}
 
 object movedor {
 
@@ -42,23 +42,25 @@ object movedor {
 		self.moverJefe()
 		self.moverEnigma()
 		self.moverZombie()
-		self.jefeDisparar()
+		nivel1.plantarBomba()
+//		self.jefeDisparar()
 	}
+	
 
-	method jefeDisparar() {
-		const proyectil1 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil2 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil3 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil4 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		proyectil1.aparecer()
-		proyectil2.aparecer()
-		proyectil3.aparecer()
-		proyectil4.aparecer()
-		self.darMovimiento(proyectil1, 800, "movimientoProy1", 1, 0, false, true, true, jefe)
-		self.darMovimiento(proyectil2, 800, "movimientoProy2", 1, 0, false, false, true, jefe)
-		self.darMovimiento(proyectil3, 800, "movimientoProy3", 0, 1, false, true, true, jefe)
-		self.darMovimiento(proyectil4, 800, "movimientoProy4", 0, 1, false, true, false, jefe)
-	}
+//	method jefeDisparar() {
+//		const proyectil1 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+//		const proyectil2 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+//		const proyectil3 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+//		const proyectil4 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+//		proyectil1.aparecer()
+//		proyectil2.aparecer()
+//		proyectil3.aparecer()
+//		proyectil4.aparecer()
+//		self.darMovimiento(proyectil1, 800, "movimientoProy1", 1, 0, false, true, true, jefe)
+//		self.darMovimiento(proyectil2, 800, "movimientoProy2", 1, 0, false, false, true, jefe)
+//		self.darMovimiento(proyectil3, 800, "movimientoProy3", 0, 1, false, true, true, jefe)
+//		self.darMovimiento(proyectil4, 800, "movimientoProy4", 0, 1, false, true, false, jefe)
+//	}
 
 	method moverJefe() {
 		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true, jefe)
