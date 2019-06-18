@@ -12,6 +12,7 @@ class Enemigos inherits CosaInteractiva {
 	method morir(cosa) {
 		game.removeVisual(self)
 		cosa.derrotasteA(self)
+		casco.liberar(cosa)
 	}
 
 	method tieneLLave() = false
@@ -35,6 +36,7 @@ object enigma inherits Enemigos {
 			game.removeTickEvent("movimientoEnigma")
 		} else {
 			cosa.morir()
+			game.say(cosa, "Creo que necesito una Armadura")
 		}
 	}
 
@@ -57,6 +59,7 @@ object zombie inherits Enemigos {
 			game.removeTickEvent("movimientoZombie")
 		} else {
 			cosa.morir()
+			game.say(cosa, "Necesito una Espada...")
 		}
 	}
 
@@ -88,6 +91,7 @@ object jefe inherits Enemigos {
 			self.morir(cosa)
 		} else {
 			cosa.morir()
+			game.say(cosa, "Tengo que estar bien equipado")
 		}
 	}
 

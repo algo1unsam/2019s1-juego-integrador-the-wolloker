@@ -49,7 +49,6 @@ object nivel1 {
 		game.addVisual(jefe)
 		game.addVisual(espada)
 		game.addVisual(armadura)
-		game.addVisual(casco)
 		game.addVisual(enigma)
 		game.addVisual(zombie)
 		game.addVisualIn(puerta, game.at(21, 1))

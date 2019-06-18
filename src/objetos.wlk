@@ -31,7 +31,7 @@ object casco inherits Equipo {
 
 	override method image() = "casco.png"
 
-	override method position() = game.at(21, 11)
+	override method position() = game.at(19, 4)
 
 	override method teChocasteCon(cosa) {
 		if (cosa.puedeLevantar()) {
@@ -40,6 +40,10 @@ object casco inherits Equipo {
 				super(cosa)
 			}
 		}
+	}
+
+	method liberar(cosa) {
+		if (jefe.todosLosEnemigosMuertos(cosa)) self.aparecer()
 	}
 
 }
