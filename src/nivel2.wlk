@@ -64,8 +64,12 @@ object nivel2 {
 	}
 
 	method gano() {
-		movedor.quitarTicksNivel2()
-		keyboard.any().onPressDo({ puerta.gameOver()})
+		keyboard.any().onPressDo({ self.gameOver()})
+	}
+
+	method gameOver() {
+		controladorDeTablero.sacarTodo()
+		keyboard.any().onPressDo({ game.stop()})
 	}
 
 }

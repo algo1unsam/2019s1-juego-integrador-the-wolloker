@@ -32,6 +32,7 @@ object enigma inherits Enemigos {
 	override method teChocasteCon(cosa) {
 		if (cosa.tieneArmadura()) {
 			self.morir(cosa)
+			game.removeTickEvent("movimientoEnigma")
 		} else {
 			cosa.morir()
 		}
@@ -53,6 +54,7 @@ object zombie inherits Enemigos {
 	override method teChocasteCon(cosa) {
 		if (gaston.espadaYArmadura()) {
 			self.morir(cosa)
+			game.removeTickEvent("movimientoZombie")
 		} else {
 			cosa.morir()
 		}
@@ -76,6 +78,7 @@ object jefe inherits Enemigos {
 	method todosLosEnemigosMuertos(cosa) = cosa.derrotados().asSet() == esbirros.asSet()
 
 	override method morir(cosa) {
+		game.removeTickEvent("movimientoJefe")
 		game.removeVisual(self)
 		llave.aparecer()
 	}

@@ -30,15 +30,15 @@ object movedor {
 	}
 
 	method moverJefe() {
-		self.darMovimiento(jefe, 200, "movimiento jefe", 4, 2, true, true, true)
+		self.darMovimiento(jefe, 200, "movimientoJefe", 4, 2, true, true, true)
 	}
 
 	method moverEnigma() {
-		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 1, true, true, true)
+		self.darMovimiento(enigma, 300, "movimientoEnigma", 0, 1, true, true, true)
 	}
 
 	method moverZombie() {
-		self.darMovimiento(zombie, 500, "movimiento Zombie", 3, 2, true, true, true)
+		self.darMovimiento(zombie, 500, "movimientoZombie", 3, 2, true, true, true)
 	}
 
 	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha) {
@@ -73,42 +73,32 @@ object movedor {
 	}
 
 	method moverBola1Up() {
-		self.moverArriba(nivel2.bolaArriba1(), 30, "movimiento bolaArriba1")
+		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1")
 	}
 
 	method moverBola2Up() {
-		self.moverArriba(nivel2.bolaArriba2(), 60, "movimiento bolaArriba2")
+		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2")
 	}
 
 	method moverBola1Down() {
-		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimiento bolaAbajo1")
+		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1")
 	}
 
 	method moverBola2Down() {
-		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimiento bolaAbajo2")
+		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2")
 	}
 
 	method moverFlecha1Up() {
-		self.moverArriba(nivel2.flechaArriba1(), 20, "movimiento flechaArriba1")
+		self.moverArriba(nivel2.flechaArriba1(), 20, "movimientoFlechaArriba1")
 	}
 
 	method moverFlecha1Down() {
-		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimiento flechaAbajo1")
+		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimientoFlechaAbajo1")
 	}
 
-	method quitarTicksNivel1() {
-		game.removeTickEvent("movimiento Enigma")
-		game.removeTickEvent("movimiento Zombie")
-		game.removeTickEvent("movimiento jefe")
-	}
-	method quitarTicksNivel2() {
-			game.removeTickEvent("movimiento bolaArriba1")
-			game.removeTickEvent("movimiento bolaArriba2")
-			game.removeTickEvent("movimiento bolaAbajo1")
-			game.removeTickEvent("movimiento bolaAbajo2")
-			game.removeTickEvent("movimiento flechaArriba1")
-			game.removeTickEvent("movimiento flechaAbajo1")
-	}
+	
+
+	
 
 }
 
@@ -202,9 +192,8 @@ object controladorDeTablero {
 	method lugarEstaVacio(posicion) = self.cosasEn(posicion).isEmpty()
 
 //*************************************************************************************
-	/*ver si sirve para algo lo que sigue */
 	method sacarTodo() {
-		new Range(0,self.limiteSuperior()).forEach({ y => new Range(0, self.limiteDerecho()).forEach({ x => self.removerCosasEn(game.at(x, y))})})
+		game.clear()
 	}
 
 	method removerCosasEn(posicion) {

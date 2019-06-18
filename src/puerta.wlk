@@ -10,9 +10,7 @@ object puerta inherits CosaInteractiva {
 
 	override method image() = "puerta4.png"
 
-	method gameOver() {
-		game.stop()
-	}
+
 
 	method pasoNivel1(cosa) {
 		if (cosa.tieneLlave()) nivel1.gano()

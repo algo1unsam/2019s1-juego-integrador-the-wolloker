@@ -85,5 +85,11 @@ object gaston inherits CosaInteractiva {
 		if (controladorDeTablero.cosasDejanPasar(posicion) or not self.estaVivo()) self.position(posicion)
 	}
 
+	method pasasteNivel1() {
+		image = "player5.png"
+		equipo.clear()
+		derrotados.clear()
+	}
+
 }
 

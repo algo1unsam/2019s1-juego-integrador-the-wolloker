@@ -62,7 +62,7 @@ object nivel1 {
 	}
 
 	method gano() {
-		movedor.quitarTicksNivel1()
+		gaston.pasasteNivel1()
 		puzzle.cargar()
 	}
 
