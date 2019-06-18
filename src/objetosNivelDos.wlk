@@ -34,9 +34,4 @@ class Proyectil inherits CosaInteractiva {
 
 }
 
-class ProyectilJefe inherits Proyectil {
-
-	method tieneLlave() = false
-
-}
 

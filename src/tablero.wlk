@@ -42,22 +42,6 @@ object movedor {
 		self.moverJefe()
 		self.moverEnigma()
 		self.moverZombie()
-		self.jefeDisparar()
-	}
-
-	method jefeDisparar() {
-		const proyectil1 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil2 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil3 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		const proyectil4 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
-		proyectil1.aparecer()
-		proyectil2.aparecer()
-		proyectil3.aparecer()
-		proyectil4.aparecer()
-		self.darMovimiento(proyectil1, 800, "movimientoProy1", 1, 0, false, true, true, jefe)
-		self.darMovimiento(proyectil2, 800, "movimientoProy2", 1, 0, false, false, true, jefe)
-		self.darMovimiento(proyectil3, 800, "movimientoProy3", 0, 1, false, true, true, jefe)
-		self.darMovimiento(proyectil4, 800, "movimientoProy4", 0, 1, false, true, false, jefe)
 	}
 
 	method moverJefe() {
@@ -86,13 +70,14 @@ object movedor {
 		})
 	}
 
+
 	method moverNivel2() {
 		self.moverBola1Up()
 		self.moverBola2Up()
 		self.moverBola1Down()
 		self.moverBola2Down()
-		self.moverFlecha1Up()
-		self.moverFlecha1Down()
+		self.moverFlecha1Up()//////////////////
+//		self.moverFlecha1Down()
 	}
 
 	method moverArriba(objeto, velocidad, nombre, enemigo) {
@@ -119,13 +104,13 @@ object movedor {
 		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2", nivel2.magoU2())
 	}
 
-	method moverFlecha1Up() {
-		self.moverArriba(nivel2.flechaArriba1(), 20, "movimientoFlechaArriba1", nivel2.arqD1())
+	method moverFlecha1Up() {/////////////////////
+		self.moverArriba(nivel2.lavaArriba(), 20, "movimientoLavaArriba", nivel2.arqD1())
 	}
 
-	method moverFlecha1Down() {
-		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimientoFlechaAbajo1", nivel2.arqU1())
-	}
+//	method moverFlecha1Down() {
+//		self.moverAbajo(nivel2.lavaArriba(), 50, "movimientoLavaArriba", nivel2.arqU1())
+//	}
 
 }
 
