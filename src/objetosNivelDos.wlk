@@ -6,15 +6,19 @@ import gaston.*
 import objetos.*
 import enemigos.*
 
-class Mago {
+class Mago inherits CosaInteractiva {
 
-	method image() = "mago.png"
-	
+	override method image() = "mago.png"
+
+	override method teChocasteCon(cosa) {
+		if (cosa == gaston and gaston.estaVivo()) gaston.morir()
+	}
+
 }
 
-class Arquero {
+class Arquero inherits Mago {
 
-	method image() = "arquero.png"
+	override method image() = "arquero.png"
 
 }
 
