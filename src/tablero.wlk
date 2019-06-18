@@ -47,6 +47,9 @@ object movedor {
 	}
 	
 
+	
+
+
 	method moverJefe() {
 		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true, jefe)
 	}
