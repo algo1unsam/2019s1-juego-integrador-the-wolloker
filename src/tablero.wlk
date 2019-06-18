@@ -21,20 +21,20 @@ class CosaEnTablero {
 
 }
 
-//object scheduler {
-//
-//	var count = 0
-//
-//	method schedule(milliseconds, action) {
-//		count += 1
-//		const name = "scheduler" + count
-//		game.onTick(milliseconds, name, { =>
-//			action.apply()
-//			game.removeTickEvent(name)
-//		})
-//	}
-//
-//}
+object scheduler {
+
+	var count = 0
+
+	method schedule(milliseconds, action) {
+		count += 1
+		const name = "scheduler" + count
+		game.onTick(milliseconds, name, { =>
+			action.apply()
+			game.removeTickEvent(name)
+		})
+	}
+
+}
 
 object movedor {
 
@@ -42,7 +42,10 @@ object movedor {
 		self.moverJefe()
 		self.moverEnigma()
 		self.moverZombie()
+		nivel1.plantarBomba()
+
 	}
+	
 
 	method moverJefe() {
 		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true, jefe)
@@ -69,7 +72,10 @@ object movedor {
 			}
 		})
 	}
-
+	
+//	method moverLava(nombre, cosa){
+//		game.onTick(600, nombre, )
+//	}
 
 	method moverNivel2() {
 		self.moverBola1Up()
