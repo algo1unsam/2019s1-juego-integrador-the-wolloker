@@ -12,13 +12,19 @@ object nivel2 {
 
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
+	const property flechaArriba1 = new Proyectil(imagen = "flechaarriba.png", position = game.at(12, 2))
+	const property flechaAbajo1 = new Proyectil(imagen = "flechaabajo.png", position = game.at(9, 10))
+	const property bolaArriba1 = new Proyectil(imagen = "bolaparaarriba.png", position = game.at(6, 2))
+	const property bolaArriba2 = new Proyectil(imagen = "bolaparaarriba.png", position = game.at(18, 2))
+	const property bolaAbajo1 = new Proyectil(imagen = "bolaparabajo.png", position = game.at(3, 10))
+	const property bolaAbajo2 = new Proyectil(imagen = "bolaparabajo.png", position = game.at(15, 10))
 
 	method cargar() {
 		controladorDeTablero.sacarTodo()
 		self.agregarCosas()
 		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
 		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
-		game.whenCollideDo(puerta, { e => puerta.gameOver()})
+		game.whenCollideDo(puerta, { e => puerta.pasoNivel2(e)})
 		keyboard.right().onPressDo({ controladorDeTablero.moverDer(gaston)})
 		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
 		keyboard.down().onPressDo({ controladorDeTablero.moverAba(gaston)})
@@ -55,6 +61,11 @@ object nivel2 {
 		self.cargarBordeV(ancho)
 		self.cargarBordeH(0)
 		self.cargarBordeH(largo)
+	}
+
+	method gano() {
+		movedor.quitarTicksNivel2()
+		keyboard.any().onPressDo({ puerta.gameOver()})
 	}
 
 }

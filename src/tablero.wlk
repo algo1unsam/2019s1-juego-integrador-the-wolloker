@@ -1,10 +1,12 @@
 import wollok.game.*
 import gaston.*
-import nivel2.*
+import nivel1.*
 import paredes.*
 import puzzle.*
 import enemigos.*
 import nivel2.*
+import tablero.*
+import objetosNivelDos.*
 
 class CosaEnTablero {
 
@@ -28,100 +30,144 @@ object movedor {
 	}
 
 	method moverJefe() {
-		self.darMovimiento(jefe, 200, "movimiento jefe", 4, 2)
+		self.darMovimiento(jefe, 200, "movimiento jefe", 4, 2, true, true, true)
 	}
 
 	method moverEnigma() {
-		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 1)
+		self.darMovimiento(enigma, 300, "movimiento Enigma", 0, 1, true, true, true)
 	}
 
 	method moverZombie() {
-		self.darMovimiento(zombie, 500, "movimiento Zombie", 3, 2)
+		self.darMovimiento(zombie, 500, "movimiento Zombie", 3, 2, true, true, true)
 	}
 
-	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH) {
-		const objeto = new Limitador(limV = limiteV, limH = limiteH)
+	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha) {
+		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, posInicial = cosa.position(), cambiaSentido = idaYVuelta)
 		game.onTick(tiempo, nombre, {=>
 			if (limiteV != 0) {
-				if (objeto.up()) cosa.position(cosa.position().up(1)) else cosa.position(cosa.position().down(1))
+				if (objeto.up()) objeto.moverUp() else objeto.moverDown()
 				objeto.sumarV()
 			}
 			if (limiteH != 0) {
-				if (objeto.right()) cosa.position(cosa.position().right(1)) else cosa.position(cosa.position().left(1))
+				if (objeto.right()) objeto.moverRight() else objeto.moverLeft()
 				objeto.sumarH()
 			}
 		})
 	}
 
 	method moverNivel2() {
-//		self.moverBola1Up()
-//		self.moverBola2Up()
-//		self.moverBola1Down()
-//		self.moverBola2Down()
-//		self.moverFlecha1Up()
-//		self.moverFlecha2Up()
+		self.moverBola1Up()
+		self.moverBola2Up()
+		self.moverBola1Down()
+		self.moverBola2Down()
+		self.moverFlecha1Up()
+		self.moverFlecha1Down()
 	}
 
-//	method moverBola1Up() {
-//		self.darMovimiento(bolaArriba1, 30, "bola arriba1", 3, 2)
-//	}
-//	
-//	game.onTick(30, "bola arriba1", {=>
-//			bolaArriba1.position(bolaArriba1.position().up(1))
-//			bolaArriba1.sumarMov()
-//	})
-//	game.onTick(60, "bola arriba2", {=>
-//			bolaArriba2.position(bolaArriba2.position().up(1))
-//			bolaArriba2.sumarMov()
-//	})
-//	game.onTick(20, "flecha arriba1", {=>
-//			flechaArriba1.position(flechaArriba1.position().up(1))
-//			flechaArriba1.sumarMov()
-//	})
-//	game.onTick(50, "flecha abajo1", {=>
-//			flechaAbajo1.position(flechaAbajo1.position().down(1))
-//			flechaAbajo1.sumarMov()
-//	})
-//	game.onTick(60, "bola abajo1", {=>
-//			bolaAbajo1.position(bolaAbajo1.position().down(1))
-//			bolaAbajo1.sumarMov()
-//	})
-//	game.onTick(25, "bola abajo2", {=>
-//			bolaAbajo2.position(bolaAbajo2.position().down(1))
-//			bolaAbajo2.sumarMov()
-//	})
-//	
-//
+	method moverArriba(objeto, velocidad, nombre) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, true, true)
+	}
+
+	method moverAbajo(objeto, velocidad, nombre) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true)
+	}
+
+	method moverBola1Up() {
+		self.moverArriba(nivel2.bolaArriba1(), 30, "movimiento bolaArriba1")
+	}
+
+	method moverBola2Up() {
+		self.moverArriba(nivel2.bolaArriba2(), 60, "movimiento bolaArriba2")
+	}
+
+	method moverBola1Down() {
+		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimiento bolaAbajo1")
+	}
+
+	method moverBola2Down() {
+		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimiento bolaAbajo2")
+	}
+
+	method moverFlecha1Up() {
+		self.moverArriba(nivel2.flechaArriba1(), 20, "movimiento flechaArriba1")
+	}
+
+	method moverFlecha1Down() {
+		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimiento flechaAbajo1")
+	}
+
+	method quitarTicksNivel1() {
+		game.removeTickEvent("movimiento Enigma")
+		game.removeTickEvent("movimiento Zombie")
+		game.removeTickEvent("movimiento jefe")
+	}
+	method quitarTicksNivel2() {
+			game.removeTickEvent("movimiento bolaArriba1")
+			game.removeTickEvent("movimiento bolaArriba2")
+			game.removeTickEvent("movimiento bolaAbajo1")
+			game.removeTickEvent("movimiento bolaAbajo2")
+			game.removeTickEvent("movimiento flechaArriba1")
+			game.removeTickEvent("movimiento flechaAbajo1")
+	}
+
 }
 
 class Limitador {
 
 	var pasosV = 0
 	var pasosH = 0
-	var property up = true
-	var property right = true
+	var property up
+	var property right
 	const limV
 	const limH
+	const cambiaSentido
+	const objetoAMover
+	const posInicial
 
 	method sumarV() {
 		pasosV += 1
-		self.debeCambiarSentido()
+		self.debeCambiar()
 	}
 
 	method sumarH() {
 		pasosH += 1
-		self.debeCambiarSentido()
+		self.debeCambiar()
 	}
 
-	method debeCambiarSentido() {
+	method debeCambiar() {
 		if (pasosV > limV) {
-			up = not up
+			if (cambiaSentido) self.cambiarSentido('y') else self.irAInicio()
 			pasosV = 0
 		}
 		if (pasosH > limH) {
-			right = not right
+			if (cambiaSentido) self.cambiarSentido('x') else self.irAInicio()
 			pasosH = 0
 		}
+	}
+
+	method cambiarSentido(eje) {
+		if (eje == 'x') right = not right
+		if (eje == 'y') up = not up
+	}
+
+	method irAInicio() {
+		objetoAMover.position(posInicial)
+	}
+
+	method moverUp() {
+		objetoAMover.position(objetoAMover.position().up(1))
+	}
+
+	method moverDown() {
+		objetoAMover.position(objetoAMover.position().down(1))
+	}
+
+	method moverRight() {
+		objetoAMover.position(objetoAMover.position().right(1))
+	}
+
+	method moverLeft() {
+		objetoAMover.position(objetoAMover.position().left(1))
 	}
 
 }
@@ -133,7 +179,6 @@ object controladorDeTablero {
 	var property limiteCeroX = 0
 	var property limiteCeroY = 0
 
-//	var property jugador=gaston
 	/*aca se manda la proxima ubicacion */
 	method sePuedeMoverA(posicion) = not self.seVaDelTablero(posicion) and (self.cosasDejanPasar(posicion) or self.lugarEstaVacio(posicion))
 

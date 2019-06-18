@@ -23,7 +23,7 @@ object nivel1 {
 		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
 		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
 		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
-		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1()})
+		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1(cosa)})
 		movedor.moverNivel1()
 	}
 
@@ -62,6 +62,7 @@ object nivel1 {
 	}
 
 	method gano() {
+		movedor.quitarTicksNivel1()
 		puzzle.cargar()
 	}
 

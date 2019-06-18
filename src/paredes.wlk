@@ -9,6 +9,7 @@ class Pared inherits CosaEnTablero {
 	override method image() = "muro.png"
 
 	override method dejaPasar() = false
+	
 
 }
 

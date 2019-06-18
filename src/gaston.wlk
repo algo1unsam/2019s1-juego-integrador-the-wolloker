@@ -1,5 +1,4 @@
 import wollok.game.*
-
 import paredes.*
 import puzzle.*
 import tablero.*
@@ -74,7 +73,7 @@ object gaston inherits CosaInteractiva {
 		if (not self.estaVivo()) {
 			estaVivo = true
 			image = "player1.png"
-			self.position(self.position().left(1))
+			self.position(self.position().up(1))
 		}
 	}
 

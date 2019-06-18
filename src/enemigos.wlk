@@ -14,6 +14,8 @@ class Enemigos inherits CosaInteractiva {
 		cosa.derrotasteA(self)
 	}
 
+	method tieneLLave() = false
+
 }
 
 object enigma inherits Enemigos {
@@ -38,12 +40,14 @@ object enigma inherits Enemigos {
 }
 
 object zombie inherits Enemigos {
-override method position() {
+
+	override method position() {
 		if (position == null) {
-			self.position(game.at(8,7))
+			self.position(game.at(8, 7))
 		}
 		return position
 	}
+
 	override method image() = "zombie.png"
 
 	override method teChocasteCon(cosa) {
