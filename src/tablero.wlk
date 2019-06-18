@@ -21,28 +21,59 @@ class CosaEnTablero {
 
 }
 
+//object scheduler {
+//
+//	var count = 0
+//
+//	method schedule(milliseconds, action) {
+//		count += 1
+//		const name = "scheduler" + count
+//		game.onTick(milliseconds, name, { =>
+//			action.apply()
+//			game.removeTickEvent(name)
+//		})
+//	}
+//
+//}
+
 object movedor {
 
 	method moverNivel1() {
 		self.moverJefe()
 		self.moverEnigma()
 		self.moverZombie()
+		self.jefeDisparar()
+	}
+
+	method jefeDisparar() {
+		const proyectil1 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+		const proyectil2 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+		const proyectil3 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+		const proyectil4 = new ProyectilJefe(imagen = "bolajefe.png", position = jefe.position())
+		proyectil1.aparecer()
+		proyectil2.aparecer()
+		proyectil3.aparecer()
+		proyectil4.aparecer()
+		self.darMovimiento(proyectil1, 100, "movimientoProy1", 1, 0, false, true, true, jefe)
+		self.darMovimiento(proyectil2, 100, "movimientoProy2", 1, 0, false, false, true, jefe)
+		self.darMovimiento(proyectil3, 100, "movimientoProy3", 0, 1, false, true, true, jefe)
+		self.darMovimiento(proyectil4, 100, "movimientoProy4", 0, 1, false, true, false, jefe)
 	}
 
 	method moverJefe() {
-		self.darMovimiento(jefe, 200, "movimientoJefe", 4, 2, true, true, true)
+		self.darMovimiento(jefe, 200, "movimientoJefe", 4, 2, true, true, true, jefe)
 	}
 
 	method moverEnigma() {
-		self.darMovimiento(enigma, 300, "movimientoEnigma", 0, 1, true, true, true)
+		self.darMovimiento(enigma, 300, "movimientoEnigma", 0, 1, true, true, true, enigma)
 	}
 
 	method moverZombie() {
-		self.darMovimiento(zombie, 500, "movimientoZombie", 3, 2, true, true, true)
+		self.darMovimiento(zombie, 500, "movimientoZombie", 3, 2, true, true, true, zombie)
 	}
 
-	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha) {
-		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, posInicial = cosa.position(), cambiaSentido = idaYVuelta)
+	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha, enemigo) {
+		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, lanzador = enemigo, cambiaSentido = idaYVuelta)
 		game.onTick(tiempo, nombre, {=>
 			if (limiteV != 0) {
 				if (objeto.up()) objeto.moverUp() else objeto.moverDown()
@@ -64,41 +95,37 @@ object movedor {
 		self.moverFlecha1Down()
 	}
 
-	method moverArriba(objeto, velocidad, nombre) {
-		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, true, true)
+	method moverArriba(objeto, velocidad, nombre, enemigo) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, true, true, enemigo)
 	}
 
-	method moverAbajo(objeto, velocidad, nombre) {
-		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true)
+	method moverAbajo(objeto, velocidad, nombre, enemigo) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true, enemigo)
 	}
 
 	method moverBola1Up() {
-		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1")
+		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1", nivel2.magoD1())
 	}
 
 	method moverBola2Up() {
-		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2")
+		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2", nivel2.magoD2())
 	}
 
 	method moverBola1Down() {
-		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1")
+		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1", nivel2.magoU1())
 	}
 
 	method moverBola2Down() {
-		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2")
+		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2", nivel2.magoU2())
 	}
 
 	method moverFlecha1Up() {
-		self.moverArriba(nivel2.flechaArriba1(), 20, "movimientoFlechaArriba1")
+		self.moverArriba(nivel2.flechaArriba1(), 20, "movimientoFlechaArriba1", nivel2.arqD1())
 	}
 
 	method moverFlecha1Down() {
-		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimientoFlechaAbajo1")
+		self.moverAbajo(nivel2.flechaAbajo1(), 50, "movimientoFlechaAbajo1", nivel2.arqU1())
 	}
-
-	
-
-	
 
 }
 
@@ -112,7 +139,9 @@ class Limitador {
 	const limH
 	const cambiaSentido
 	const objetoAMover
-	const posInicial
+	const lanzador
+
+	method posInicial() = lanzador.position()
 
 	method sumarV() {
 		pasosV += 1
@@ -141,7 +170,7 @@ class Limitador {
 	}
 
 	method irAInicio() {
-		objetoAMover.position(posInicial)
+		objetoAMover.position(self.posInicial())
 	}
 
 	method moverUp() {

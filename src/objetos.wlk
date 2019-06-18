@@ -52,7 +52,7 @@ object espada inherits Equipo {
 
 	override method image() = "Espada2.png"
 
-	override method position() = game.at(2, 11)
+	override method position() = game.at(3, 4)
 
 	override method teChocasteCon(cosa) {
 		super(cosa)
@@ -69,7 +69,7 @@ object armadura inherits Equipo {
 
 	override method image() = "Armadura1.png"
 
-	override method position() = game.at(5, 1)
+	override method position() = game.at(11,11)
 
 	override method teChocasteCon(cosa) {
 		super(cosa)
