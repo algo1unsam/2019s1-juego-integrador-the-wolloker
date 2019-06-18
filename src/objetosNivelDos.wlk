@@ -9,7 +9,7 @@ import enemigos.*
 class Mago {
 
 	method image() = "mago.png"
-
+	
 }
 
 class Arquero {

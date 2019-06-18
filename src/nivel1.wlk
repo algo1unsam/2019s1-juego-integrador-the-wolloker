@@ -62,7 +62,6 @@ object nivel1 {
 	}
 
 	method gano() {
-		gaston.pasasteNivel1()
 		puzzle.cargar()
 	}
 
