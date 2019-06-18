@@ -54,14 +54,14 @@ object movedor {
 		proyectil2.aparecer()
 		proyectil3.aparecer()
 		proyectil4.aparecer()
-		self.darMovimiento(proyectil1, 100, "movimientoProy1", 1, 0, false, true, true, jefe)
-		self.darMovimiento(proyectil2, 100, "movimientoProy2", 1, 0, false, false, true, jefe)
-		self.darMovimiento(proyectil3, 100, "movimientoProy3", 0, 1, false, true, true, jefe)
-		self.darMovimiento(proyectil4, 100, "movimientoProy4", 0, 1, false, true, false, jefe)
+		self.darMovimiento(proyectil1, 800, "movimientoProy1", 1, 0, false, true, true, jefe)
+		self.darMovimiento(proyectil2, 800, "movimientoProy2", 1, 0, false, false, true, jefe)
+		self.darMovimiento(proyectil3, 800, "movimientoProy3", 0, 1, false, true, true, jefe)
+		self.darMovimiento(proyectil4, 800, "movimientoProy4", 0, 1, false, true, false, jefe)
 	}
 
 	method moverJefe() {
-		self.darMovimiento(jefe, 200, "movimientoJefe", 4, 2, true, true, true, jefe)
+		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true, jefe)
 	}
 
 	method moverEnigma() {
