@@ -43,27 +43,22 @@ object movedor {
 		self.moverEnigma()
 		self.moverZombie()
 		nivel1.plantarBomba()
-
 	}
-	
-
-	
-
 
 	method moverJefe() {
-		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true, jefe)
+		self.darMovimiento(jefe, 600, "movimientoJefe", 4, 2, true, true, true)
 	}
 
 	method moverEnigma() {
-		self.darMovimiento(enigma, 300, "movimientoEnigma", 0, 1, true, true, true, enigma)
+		self.darMovimiento(enigma, 300, "movimientoEnigma", 0, 1, true, true, true)
 	}
 
 	method moverZombie() {
-		self.darMovimiento(zombie, 500, "movimientoZombie", 3, 2, true, true, true, zombie)
+		self.darMovimiento(zombie, 500, "movimientoZombie", 3, 2, true, true, true)
 	}
 
-	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha, enemigo) {
-		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, lanzador = enemigo, cambiaSentido = idaYVuelta)
+	method darMovimiento(cosa, tiempo, nombre, limiteV, limiteH, idaYVuelta, arriba, derecha) {
+		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, cambiaSentido = idaYVuelta, posInicial = cosa.position())
 		game.onTick(tiempo, nombre, {=>
 			if (limiteV != 0) {
 				if (objeto.up()) objeto.moverUp() else objeto.moverDown()
@@ -75,52 +70,50 @@ object movedor {
 			}
 		})
 	}
-	
+
 //	method moverLava(nombre, cosa){
 //		game.onTick(600, nombre, )
 //	}
-
 	method moverNivel2() {
 		self.moverBola1Up()
 		self.moverBola2Up()
 		self.moverBola1Down()
 		self.moverBola2Down()
-		self.moverFlecha1Up()//////////////////
+		self.moverFlecha1Up() // ////////////////
 //		self.moverFlecha1Down()
 	}
 
-	method moverArriba(objeto, velocidad, nombre, enemigo) {
-		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, true, true, enemigo)
+	method moverArriba(objeto, velocidad, nombre) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, true, true)
 	}
 
-	method moverAbajo(objeto, velocidad, nombre, enemigo) {
-		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true, enemigo)
+	method moverAbajo(objeto, velocidad, nombre) {
+		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true)
 	}
 
 	method moverBola1Up() {
-		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1", nivel2.magoD1())
+		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1")
 	}
 
 	method moverBola2Up() {
-		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2", nivel2.magoD2())
+		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2")
 	}
 
 	method moverBola1Down() {
-		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1", nivel2.magoU1())
+		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1")
 	}
 
 	method moverBola2Down() {
-		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2", nivel2.magoU2())
+		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2")
 	}
 
-	method moverFlecha1Up() {/////////////////////
-		self.moverArriba(nivel2.lavaArriba(), 20, "movimientoLavaArriba", nivel2.arqD1())
+	method moverFlecha1Up() { // ///////////////////
+		self.moverArriba(nivel2.lavaArriba(), 20, "movimientoLavaArriba")
 	}
 
 //	method moverFlecha1Down() {
-//		self.moverAbajo(nivel2.lavaArriba(), 50, "movimientoLavaArriba", nivel2.arqU1())
+//		self.moverAbajo(nivel2.lavaArriba(), 50, "movimientoLavaArriba")
 //	}
-
 }
 
 class Limitador {
@@ -133,9 +126,7 @@ class Limitador {
 	const limH
 	const cambiaSentido
 	const objetoAMover
-	const lanzador
-
-	method posInicial() = lanzador.position()
+	const posInicial
 
 	method sumarV() {
 		pasosV += 1
@@ -164,7 +155,7 @@ class Limitador {
 	}
 
 	method irAInicio() {
-		objetoAMover.position(self.posInicial())
+		objetoAMover.position(posInicial)
 	}
 
 	method moverUp() {

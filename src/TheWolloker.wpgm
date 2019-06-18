@@ -16,8 +16,8 @@ program theWolloker {
 	game.height(15)
 	game.width(25)
 	game.ground("suelo2.png")
-//	nivel1.cargar()
+	nivel1.cargar()
 //	puzzle.cargar()
-	nivel2.cargar()
+//	nivel2.cargar()
 	game.start()
 }
