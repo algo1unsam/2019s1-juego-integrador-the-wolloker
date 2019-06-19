@@ -25,16 +25,36 @@ class Arquero inherits Mago {
 class Proyectil inherits CosaInteractiva {
 
 	var imagen
-
+	
 	override method image() = imagen
 
 	override method teChocasteCon(cosa) {
 		cosa.morir()
 	}
 
-method tieneLlave() = false
-
+	method tieneLlave() = false
+	
+	method moverse(posicion){//--------------------------------------------
+		self.position(posicion)
+	}
 }
 
+class Lava inherits Proyectil {
+	
+	const property tiempo = 1000
+	
+}
+
+class BolaDeNieve inherits Proyectil {
+	
+	const property tiempo = 100
+	
+}
+
+class Obsidiana inherits Proyectil {
+	override method teChocasteCon(cosa) {
+		cosa.position(self.position())
+	}
+}
 
 

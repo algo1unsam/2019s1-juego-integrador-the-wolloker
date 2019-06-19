@@ -71,16 +71,22 @@ object movedor {
 		})
 	}
 
-//	method moverLava(nombre, cosa){
-//		game.onTick(600, nombre, )
-//	}
+	method moverProyectilesArriba(){
+		var count = 0
+		nivel2.lineaLava1().forEach{proyectil =>
+		game.onTick(proyectil.tiempo(),"proyectil" + count , {=> 
+			otroTablero.moverHaciaArriba(proyectil)
+			count++
+		})
+		}
+	}
+	
 	method moverNivel2() {
-		self.moverBola1Up()
-		self.moverBola2Up()
+//		self.moverBola1Up()
+//		self.moverBola2Up()
 		self.moverBola1Down()
 		self.moverBola2Down()
-		self.moverFlecha1Up() // ////////////////
-//		self.moverFlecha1Down()
+		self.moverProyectilesArriba()
 	}
 
 	method moverArriba(objeto, velocidad, nombre) {
@@ -107,13 +113,6 @@ object movedor {
 		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2")
 	}
 
-	method moverFlecha1Up() { // ///////////////////
-		self.moverArriba(nivel2.lavaArriba(), 20, "movimientoLavaArriba")
-	}
-
-//	method moverFlecha1Down() {
-//		self.moverAbajo(nivel2.lavaArriba(), 50, "movimientoLavaArriba")
-//	}
 }
 
 class Limitador {
@@ -239,31 +238,11 @@ object controladorDeTablero {
 ////////////////////para sacar metodos///////////////////
 object otroTablero {
 
-	const limiteSuperior = (game.height() - 1)
-	const limiteDerecho = (game.width() - 1)
-	const limiteCero = 0
+	const limiteSuperior = (game.height() - 2)
+	//const limiteDerecho = (game.width() - 1)
+	const limiteCero = 1
 
-	method errorRegar() {
-		self.error("No tengo nada para regar")
-	}
-
-	method errorCosechar() {
-		self.error("No tengo nada para cosechar")
-	}
-
-	method errorVender() {
-		self.error("No tengo Plantas para vender")
-	}
-
-	method errorComprar(mercado) {
-		mercado.error("No Tengo Monedas Suficientes")
-	}
-
-	method errorMercado() {
-		self.error("Tengo que ir a un mercado primero")
-	}
-
-	method moverHaciaArriba(objeto) {
+	method moverHaciaArriba(objeto) {//-----------------------------------------------------
 		self.moverElemento(objeto, self.arribaDeTodo(objeto.position()), self.posicionTodoAbajo(objeto.position()), objeto.position().up(1))
 	}
 
@@ -271,35 +250,35 @@ object otroTablero {
 		self.moverElemento(objeto, self.abajoDeTodo(objeto.position()), self.posicionTodoArriba(objeto.position()), objeto.position().down(1))
 	}
 
-	method moverHaciaIzq(objeto) {
-		self.moverElemento(objeto, self.izqDeTodo(objeto.position()), self.posicionTodoDer(objeto.position()), objeto.position().left(1))
-	}
+//	method moverHaciaIzq(objeto) {
+//		self.moverElemento(objeto, self.izqDeTodo(objeto.position()), self.posicionTodoDer(objeto.position()), objeto.position().left(1))
+//	}
+//
+//	method moverHaciaDer(objeto) {
+//		self.moverElemento(objeto, self.derDeTodo(objeto.position()), self.posicionTodoIzq(objeto.position()), objeto.position().right(1))
+//	}
 
-	method moverHaciaDer(objeto) {
-		self.moverElemento(objeto, self.derDeTodo(objeto.position()), self.posicionTodoIzq(objeto.position()), objeto.position().right(1))
-	}
-
-	method moverElemento(objeto, condicion, alBorde, normal) {
+	method moverElemento(objeto, condicion, alBorde, normal) {/////////////////
 		if (condicion) objeto.moverse(alBorde) else objeto.moverse(normal)
 	}
 
 	/*estas son las posiciones del objeto modificadas para que cambie de lado*/
-	method posicionTodoAbajo(posicion) = game.at(posicion.x(), limiteCero)
+	method posicionTodoAbajo(posicion) = game.at(posicion.x(), limiteCero)//-----------------------------------
 
 	method posicionTodoArriba(posicion) = game.at(posicion.x(), limiteSuperior)
-
-	method posicionTodoIzq(posicion) = game.at(limiteCero, posicion.y())
-
-	method posicionTodoDer(posicion) = game.at(limiteDerecho, posicion.y())
+//
+//	method posicionTodoIzq(posicion) = game.at(limiteCero, posicion.y())
+//
+//	method posicionTodoDer(posicion) = game.at(limiteDerecho, posicion.y())
 
 	/*estas son las comprobaciones de si esta en cada uno de los bordes */
 	method abajoDeTodo(posicion) = posicion.y() == limiteCero
 
-	method arribaDeTodo(posicion) = posicion.y() == limiteSuperior
-
-	method izqDeTodo(posicion) = posicion.x() == limiteCero
-
-	method derDeTodo(posicion) = posicion.x() == limiteDerecho
+	method arribaDeTodo(posicion) = posicion.y() == limiteSuperior//-----------------------------------------------
+	
+//	method izqDeTodo(posicion) = posicion.x() == limiteCero
+//
+//	method derDeTodo(posicion) = posicion.x() == limiteDerecho
 
 	
 
