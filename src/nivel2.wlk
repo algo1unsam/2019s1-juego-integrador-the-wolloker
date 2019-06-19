@@ -14,10 +14,10 @@ object nivel2 {
 	const largo = game.height() - 1
 	const property lavaArriba = new Proyectil(imagen = "lava.png", position = game.at(12, 2))//////////////
 	//const property flechaAbajo1 = new Proyectil(imagen = "flechaabajo.png", position = game.at(9, 10))
-	const property bolaArriba1 = new Proyectil(imagen = "bolaparaarriba.png", position = game.at(6, 2))
-	const property bolaArriba2 = new Proyectil(imagen = "bolaparaarriba.png", position = game.at(18, 2))
-	const property bolaAbajo1 = new Proyectil(imagen = "bolaparabajo.png", position = game.at(3, 10))
-	const property bolaAbajo2 = new Proyectil(imagen = "bolaparabajo.png", position = game.at(15, 10))
+	const property bolaArriba1 = new Proyectil(imagen = "boladefuego.png", position = game.at(6, 2))
+	const property bolaArriba2 = new Proyectil(imagen = "boladefuego.png", position = game.at(18, 2))
+	const property bolaAbajo1 = new Proyectil(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
+	const property bolaAbajo2 = new Proyectil(imagen = "boladefuegoabajo.png", position = game.at(15, 10))
 	const property magoU1 = new Mago(position = game.at(3, 12))
 	const property magoD1 = new Mago(position = game.at(6, 1))
 //	const property arqU1 = new Arquero(position = game.at(9, 12))

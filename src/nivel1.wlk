@@ -17,11 +17,11 @@ object nivel1 {
 	const largo = game.height() - 1
 
 	method plantarBomba() {
-		const bombita = new Proyectil(imagen = "muro2.png", position = game.at(14.randomUpTo(ancho - 2), 2.randomUpTo(largo - 2)))
-		const fireD = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().down(1))
-		const fireU = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().up(1))
-		const fireR = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().right(1))
-		const fireL = new Proyectil(imagen = "bolaparabajo.png", position = bombita.position().left(1))
+		const bombita = new Proyectil(imagen = "bomba.png", position = game.at(14.randomUpTo(ancho - 2), 2.randomUpTo(largo - 2)))
+		const fireD = new Proyectil(imagen = "estrellaninja.png", position = bombita.position().down(1))
+		const fireU = new Proyectil(imagen = "estrellaninja.png", position = bombita.position().up(1))
+		const fireR = new Proyectil(imagen = "estrellaninja.png", position = bombita.position().right(1))
+		const fireL = new Proyectil(imagen = "estrellaninja.png", position = bombita.position().left(1))
 		const apagar = { game.removeVisual(fireD)
 			game.removeVisual(fireU)
 			game.removeVisual(fireR)
