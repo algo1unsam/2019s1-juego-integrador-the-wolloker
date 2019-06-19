@@ -57,7 +57,6 @@ object gaston inherits CosaInteractiva {
 		estaVivo = false
 		image = "casper.png"
 		self.dejarEquipo()
-		self.equipo().clear()
 	}
 
 	method dejarEquipo() {
