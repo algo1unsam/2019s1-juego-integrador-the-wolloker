@@ -52,9 +52,11 @@ class BolaDeNieve inherits Proyectil {
 }
 
 class Obsidiana inherits Proyectil {
+	const property tiempo = 100
 	override method teChocasteCon(cosa) {
 		cosa.position(self.position())
 	}
+	
 }
 
 

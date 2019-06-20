@@ -1,4 +1,4 @@
- import paredes.*
+import paredes.*
 import tablero.*
 import wollok.game.*
 import gaston.*
@@ -12,7 +12,6 @@ object nivel2 {
 
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
-	
 //	const property lavaArriba1 = new Lava(imagen = "lava.png", position = game.at(10, 1))
 //	const property lavaArriba2 = new Lava(imagen = "lava.png", position = game.at(10, 2))
 //	const property lavaArriba3 = new Lava(imagen = "lava.png", position = game.at(10, 3))
@@ -26,34 +25,32 @@ object nivel2 {
 //	const property lavaArriba11 = new Lava(imagen = "lava.png", position = game.at(10, 11))
 //	const property lavaArriba12 = new Lava(imagen = "lava.png", position = game.at(10, 12))
 //	const property lavaArriba13 = new Lava(imagen = "lava.png", position = game.at(10, 13))
-	
 	const property bolaArriba1 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(6, 2))
 	const property bolaArriba2 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(18, 2))
 	const property bolaAbajo1 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
 	const property bolaAbajo2 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(15, 10))
-	
 	const property lineaLava1 = [
 	]
-	
-
 	const property magoU1 = new Mago(position = game.at(3, 12))
 	const property magoD1 = new Mago(position = game.at(6, 1))
 	const property magoU2 = new Mago(position = game.at(15, 12))
 	const property magoD2 = new Mago(position = game.at(18, 1))
-	
+
 //	const lineaDeLava1 = new Range(1, 13).forEach({n => self.crearLava(10,n,lista)})
-//	
-	method crearLava(x,y) = new Lava(imagen = "lava.png",position = game.at(x, y))
-	
-	method agregar(lista,obj){
+	method crearLava(x, y) = new Lava(imagen = "lava.png", position = game.at(x, y))
+
+	method agregar(lista, obj) {
 		lista.add(obj)
 		game.addVisual(obj)
 	}
-	
-	method llenarLista(lista,x){
-		self.agregar(lista,new Range(1, 13).forEach({n => self.crearLava(x,n)}))
+
+	method llenarLista(lista, x) {
+		const ladrillito= new Obsidiana(imagen = "muro.png", position = game.at(x,1))
+		self.agregar(lista,ladrillito )
+		new Range(2, 13).forEach({ n => self.agregar(lista, self.crearLava(x, n))})
+	// self.agregar(lista,new Range(1, 13).forEach({n => self.crearLava(x,n)}))
 	}
-	
+
 	method cargar() {
 		controladorDeTablero.sacarTodo()
 		self.agregarCosas()
@@ -64,7 +61,7 @@ object nivel2 {
 		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
 		keyboard.down().onPressDo({ controladorDeTablero.moverAba(gaston)})
 		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
-		self.llenarLista(lineaLava1,10)
+		self.llenarLista(lineaLava1, 10)
 		movedor.moverNivel2()
 	}
 
@@ -84,7 +81,6 @@ object nivel2 {
 		game.addVisual(magoU1)
 		game.addVisual(bolaArriba1)
 		game.addVisual(magoD1)
-		
 //		game.addVisual(lavaArriba1)
 //		game.addVisual(lavaArriba2)
 //		game.addVisual(lavaArriba3)
@@ -97,8 +93,7 @@ object nivel2 {
 //		game.addVisual(lavaArriba10)
 //		game.addVisual(lavaArriba11)
 //		game.addVisual(lavaArriba12)
-		//game.addVisual(lavaArriba13)
-		
+			// game.addVisual(lavaArriba13)
 		game.addVisual(bolaAbajo2)
 		game.addVisual(magoU2)
 		game.addVisual(bolaArriba2)
