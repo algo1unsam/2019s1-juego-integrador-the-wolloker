@@ -6,7 +6,7 @@ import enemigos.*
 import objetos.*
 
 object gaston inherits CosaInteractiva {
-
+	var property hits = -999
 	const property equipo = []
 	const property derrotados = []
 	var estaVivo = true
@@ -28,13 +28,30 @@ object gaston inherits CosaInteractiva {
 	method tieneEspada() = equipo.contains(espada)
 
 	method tieneCasco() = equipo.contains(casco)
+	
+	method tieneEscudo() = equipo.contains(escudo)
 
 	method espadaYArmadura() = self.tieneArmadura() and self.tieneEspada()
 
 	method fullEquipo() = self.espadaYArmadura() and self.tieneCasco()
+	
+	method tieneeEscudo() =  self.tieneEscudo()
+	
 
 	method puedeLevantar() = estaVivo
-
+	
+	method desequipado(){
+		image = "player1.png"
+	}
+	
+	method soloEscudo(){
+		image = "player10.png"
+	}
+	
+	method conEscudo(){
+		image = "player9.png"
+	}
+	
 	method conCasco() {
 		image = "player5.png"
 	}
@@ -86,9 +103,42 @@ object gaston inherits CosaInteractiva {
 
 	method pasasteNivel1() {
 		image = "player5.png"
-		equipo.clear()
+		//equipo.clear()
 		derrotados.clear()
 	}
+	
+	method teGolpeo(){
+		
+		self.position(self.position().left(1))
+			hits++
+			
+		if (self.golpes()==0){
+			game.addVisualIn(escudo, game.at(1.randomUpTo(14), 1.randomUpTo(18)))
+			equipo.clear()
+			self.conCasco()
+			
+		}
+	
+		else{
+			
+			self.morir()
+		}
+		
+
+		
+	}
+	
+	method reiniciarGolpes(){
+		hits = -1
+	}
+	
+	method golpes(){
+		return hits
+	}
+	
+	
+	
+	
 
 }
 

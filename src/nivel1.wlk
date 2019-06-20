@@ -42,6 +42,7 @@ object nivel1 {
 
 
 	method cargar() {
+		game.clear()
 		self.agregarCosas()
 		keyboard.right().onPressDo({ controladorDeTablero.moverDer(gaston)})
 		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
@@ -91,4 +92,3 @@ object nivel1 {
 	}
 
 }
-

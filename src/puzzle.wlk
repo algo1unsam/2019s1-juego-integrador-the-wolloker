@@ -88,14 +88,20 @@ object puzzle {
 	method position() = fichasDelPuzzle.hueco().position()
 
 	method cargar() {
+		
 		controladorDeTablero.sacarTodo()
 		self.reiniciar()
 		self.hacerbordes()
 		self.aparecerFichas()
+		self.apareceGaston()
 		keyboard.left().onPressDo({ controladorDeTablero.moverDer(self)})
 		keyboard.right().onPressDo({ controladorDeTablero.moverIzq(self)})
 		keyboard.up().onPressDo({ controladorDeTablero.moverAba(self)})
 		keyboard.down().onPressDo({ controladorDeTablero.moverArr(self)})
+	}
+	method apareceGaston(){
+		gaston.conCasco()
+		game.addVisualIn(gaston,game.at(9,5))
 	}
 
 	method hacerbordes() {
@@ -146,6 +152,7 @@ object puzzle {
 
 	method gano() {
 		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
+				
 				nivel2.cargar()
 			}
 		})

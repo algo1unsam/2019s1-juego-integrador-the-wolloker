@@ -29,7 +29,7 @@ class Proyectil inherits CosaInteractiva {
 	override method image() = imagen
 
 	override method teChocasteCon(cosa) {
-		cosa.morir()
+		cosa.teGolpeo()
 	}
 
 	method tieneLlave() = false

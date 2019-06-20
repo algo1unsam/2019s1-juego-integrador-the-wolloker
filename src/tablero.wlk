@@ -82,8 +82,8 @@ object movedor {
 	}
 	
 	method moverNivel2() {
-//		self.moverBola1Up()
-//		self.moverBola2Up()
+		self.moverBola1Up()
+		self.moverBola2Up()
 		self.moverBola1Down()
 		self.moverBola2Down()
 		self.moverProyectilesArriba()

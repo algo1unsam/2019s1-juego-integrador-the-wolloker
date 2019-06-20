@@ -86,7 +86,25 @@ object llave inherits Equipo {
 
 	override method image() = "llave.png"
 
-	override method position() = game.at(18, 2)
+	override method position() = game.at(17, 2)
 
+}
+
+object escudo inherits Equipo{
+	
+	
+	override method image() = "escudo.png"
+
+	override method position() = game.at(1,12)
+
+	override method teChocasteCon(cosa) {
+		super(cosa)
+		if (gaston.fullEquipo()) {
+			gaston.conEscudo()
+		} else {
+			gaston.soloEscudo()
+		}
+	}
+	
 }
 
