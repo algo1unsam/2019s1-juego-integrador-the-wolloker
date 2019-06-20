@@ -22,7 +22,7 @@ program theWolloker {
 	keyboard.c().onPressDo({nivel1.cargar()})
 //	nivel1.cargar()
 //	puzzle.cargar()
-// 	nivel2.cargar()
+ 	nivel2.cargar()
 	game.start()
 	
 }
