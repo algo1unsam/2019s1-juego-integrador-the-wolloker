@@ -12,7 +12,6 @@ object nivel2 {
 
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
-<<<<<<< HEAD
 	
 //	const property lavaArriba1 = new Lava(imagen = "lava.png", position = game.at(10, 1))
 //	const property lavaArriba2 = new Lava(imagen = "lava.png", position = game.at(10, 2))
@@ -28,22 +27,15 @@ object nivel2 {
 //	const property lavaArriba12 = new Lava(imagen = "lava.png", position = game.at(10, 12))
 //	const property lavaArriba13 = new Lava(imagen = "lava.png", position = game.at(10, 13))
 	
-	const property bolaArriba1 = new BolaDeNieve(imagen = "bolaparaarriba.png", position = game.at(6, 2))
-	const property bolaArriba2 = new BolaDeNieve(imagen = "bolaparaarriba.png", position = game.at(18, 2))
-	const property bolaAbajo1 = new BolaDeNieve(imagen = "bolaparabajo.png", position = game.at(3, 10))
-	const property bolaAbajo2 = new BolaDeNieve(imagen = "bolaparabajo.png", position = game.at(15, 10))
+	const property bolaArriba1 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(6, 2))
+	const property bolaArriba2 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(18, 2))
+	const property bolaAbajo1 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
+	const property bolaAbajo2 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(15, 10))
 	
 	const property lineaLava1 = [
 	]
 	
-=======
-	const property lavaArriba = new Proyectil(imagen = "lava.png", position = game.at(12, 2))//////////////
-	//const property flechaAbajo1 = new Proyectil(imagen = "flechaabajo.png", position = game.at(9, 10))
-	const property bolaArriba1 = new Proyectil(imagen = "boladefuego.png", position = game.at(6, 2))
-	const property bolaArriba2 = new Proyectil(imagen = "boladefuego.png", position = game.at(18, 2))
-	const property bolaAbajo1 = new Proyectil(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
-	const property bolaAbajo2 = new Proyectil(imagen = "boladefuegoabajo.png", position = game.at(15, 10))
->>>>>>> branch 'master' of https://github.com/algo1unsam/2019s1-juego-integrador-the-wolloker.git
+
 	const property magoU1 = new Mago(position = game.at(3, 12))
 	const property magoD1 = new Mago(position = game.at(6, 1))
 	const property magoU2 = new Mago(position = game.at(15, 12))
