@@ -8,6 +8,7 @@ import objetos.*
 import sacerdote.*
 import objetosNivelDos.*
 import Nivel.*
+import presentacion.*
 
 object nivel2 inherits Nivel {
 
@@ -83,6 +84,7 @@ object nivel2 inherits Nivel {
 
 	method gameOver() {
 		controladorDeTablero.sacarTodo()
+		game.addVisual(final)
 		keyboard.any().onPressDo({ game.stop()})
 	}
 

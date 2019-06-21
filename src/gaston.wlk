@@ -44,7 +44,7 @@ object gaston2 inherits Jugador {
 		if (self.posicionValida(posicion)) self.dejarDeSeguir()
 	}
 
-	method posRandom() = game.at(1.randomUpTo(14), 1.randomUpTo(18))
+	method posRandom() = game.at(2.randomUpTo(14), 2.randomUpTo(13))
 
 	override method teGolpeo() {
 		self.moverse(self.position().left(1))
