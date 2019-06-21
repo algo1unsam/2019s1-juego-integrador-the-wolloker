@@ -34,7 +34,7 @@ class Proyectil inherits CosaInteractiva {
 
 	method tieneLlave() = false
 
-	method moverse(posicion) { 
+	method moverse(posicion) {
 		self.position(posicion)
 	}
 
@@ -55,16 +55,39 @@ class BolaDeNieve inherits Proyectil {
 class Obsidiana inherits Proyectil {
 
 	const property tiempo = 1000
+	var pasajero = nada
 
 	override method teChocasteCon(cosa) {
+		if (cosa.puedeSerLlevado()) {
+			self.llevarA(cosa)
+			cosa.siguiendoA(self)
+		}
 	}
 
-//	override method moverse(posicion) {
-//		super(posicion)
-//		if (gaston.estaVivo() and gaston.position().up(1) == self.position()) {
-//			gaston.position(self.position())
-//		}
-//	}
+	method llevarA(cosa) {
+		pasajero = cosa
+	}
+
+	method dejarDeLlevar() {
+		pasajero = nada
+	}
+
+	override method moverse(posicion) {
+		super(posicion)
+		if (pasajero.puedeSerLlevado()) pasajero.seguir(posicion)
+	}
+
+}
+
+object nada {
+
+	method seguir() {
+	}
+
+	method dejarDeLlevar() {
+	}
+
+	method puedeSerLlevado() = false
 
 }
 

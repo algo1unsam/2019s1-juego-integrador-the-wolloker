@@ -25,6 +25,8 @@ class Equipo inherits CosaInteractiva {
 		game.removeVisual(self)
 	}
 
+	method puedeSerLlevado() = false
+
 }
 
 object casco inherits Equipo {

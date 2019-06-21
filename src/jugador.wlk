@@ -8,7 +8,7 @@ import objetos.*
 class Jugador inherits CosaInteractiva {
 
 	const property equipo = []
-	var estaVivo = true
+	var property estaVivo = true
 
 	override method image() = self.imagenSegunEquipo()
 
@@ -82,6 +82,11 @@ class Jugador inherits CosaInteractiva {
 
 	method morir() {
 		estaVivo = false
+		self.dejarEquipo()
+	}
+		method dejarEquipo() {
+		equipo.forEach{ objeto => objeto.aparecer()}
+		self.tirarTodo()
 	}
 
 	method tirarEquipo(elemento) {
@@ -104,9 +109,7 @@ class Jugador inherits CosaInteractiva {
 	}
 
 	method moverse(posicion) {
-		if (self.posicionValida(posicion)) {
-			self.position(posicion)
-		}
+		if (self.posicionValida(posicion)) self.position(posicion)
 	}
 
 	method posicionValida(posicion) {

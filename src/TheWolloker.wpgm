@@ -19,10 +19,10 @@ program theWolloker {
 	game.width(25)
 	game.ground("suelo2.png")
 	game.addVisual(presentacion)
-	keyboard.c().onPressDo({nivel1.cargar()})
+//	keyboard.c().onPressDo({nivel1.cargar()})
 //	nivel1.cargar()
 //	puzzle.cargar()
-// 	nivel2.cargar()
+ 	nivel2.cargar()
 	game.start()
 	
 }
