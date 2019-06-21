@@ -64,16 +64,6 @@ object gaston2 inherits Jugador {
 		escudo.aparecer()
 	}
 
-//	
-//method teGolpeo() {
-//		
-//		if (self.golpes() == 0) {
-//			game.addVisualIn(escudo, game.at(1.randomUpTo(14), 1.randomUpTo(18)))
-//			equipo.clear()
-//			self.conCasco()
-//		} else {
-//			self.morir()
-//		}
-//	}
+
 }
 
