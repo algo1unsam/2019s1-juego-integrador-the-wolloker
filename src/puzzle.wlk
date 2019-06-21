@@ -35,26 +35,26 @@ object fichasDelPuzzle {
 	const ficha8 = new Ficha(imagenFicha = "ficha8.png", posicionCorrecta = self.posicion8(), position = self.posicion1())
 	const hueco = new Ficha(imagenFicha = "hueco.png", posicionCorrecta = self.posicion9(), position = self.posicion4())
 	const listaFichas = [ ficha1, ficha2, ficha3, ficha4, ficha5, ficha6, ficha7, ficha8, hueco ]
+	const posiciones = [ self.posicion1(), self.posicion2(), self.posicion3(), self.posicion4(), self.posicion5(), self.posicion6(), self.posicion7(), self.posicion8(), self.posicion9() ]
+	const listaPosi = []
+
+	method reiniciarPosi() {
+		listaPosi.addAll(posiciones)
+	}
 
 	method fichasInicio() {
-//		ficha1.position(self.posicion2())
-//		ficha2.position(self.posicion7())
-//		ficha3.position(self.posicion6())
-//		ficha4.position(self.posicion9())
-//		ficha5.position(self.posicion3())
-//		ficha6.position(self.posicion8())
-//		ficha7.position(self.posicion5())
-//		ficha8.position(self.posicion1())
-//		hueco.position(self.posicion4())
-		ficha1.position(self.posicion1())
-		ficha2.position(self.posicion2())
-		ficha3.position(self.posicion3())
-		ficha4.position(self.posicion4())
-		ficha5.position(self.posicion5())
-		ficha6.position(self.posicion6())
-		ficha7.position(self.posicion7())
-		ficha8.position(self.posicion9())
-		hueco.position(self.posicion8())
+		self.reiniciarPosi()
+		listaFichas.forEach({ fichin => self.asignarPosi(fichin)})
+	}
+
+	method asignarPosi(ficha) {
+		var pos = listaPosi.anyOne()
+		self.quitarPosi(pos)
+		ficha.position(pos)
+	}
+
+	method quitarPosi(elemento) {
+		listaPosi.remove(elemento)
 	}
 
 	method hueco() = hueco
@@ -82,9 +82,23 @@ object fichasDelPuzzle {
 	method posicion9() = self.centro().right(1).down(1)
 
 	method gano() = self.fichas().all({ f => f.posicionCorrecta() == f.position() })
-method cargarUltimaFicha(){
-			game.addVisual(new Ficha(imagenFicha = "ficha9.png", posicionCorrecta = self.posicion9(), position = self.posicion9()))
-}
+
+	method cargarUltimaFicha() {
+		game.addVisual(new Ficha(imagenFicha = "ficha9.png", posicionCorrecta = self.posicion9(), position = self.posicion9()))
+	}
+
+	method facil() {
+		ficha1.position(self.posicion1())
+		ficha2.position(self.posicion2())
+		ficha3.position(self.posicion3())
+		ficha4.position(self.posicion4())
+		ficha5.position(self.posicion5())
+		ficha6.position(self.posicion6())
+		ficha7.position(self.posicion7())
+		ficha8.position(self.posicion9())
+		hueco.position(self.posicion8())
+	}
+
 }
 
 object puzzle inherits Nivel {
@@ -99,7 +113,6 @@ object puzzle inherits Nivel {
 
 	override method agregarCosas() {
 		player.position(game.at(9, 5))
-		
 		self.hacerbordes()
 		self.aparecerFichas()
 		super()
@@ -110,6 +123,8 @@ object puzzle inherits Nivel {
 		keyboard.right().onPressDo({ controladorDeTablero.moverIzq(self)})
 		keyboard.up().onPressDo({ controladorDeTablero.moverAba(self)})
 		keyboard.down().onPressDo({ controladorDeTablero.moverArr(self)})
+		keyboard.r().onPressDo({ self.reiniciar()})
+		keyboard.f().onPressDo({ fichasDelPuzzle.facil()})
 	}
 
 	method hacerbordes() {

@@ -21,7 +21,7 @@ program theWolloker {
 	game.addVisual(presentacion)
 	keyboard.c().onPressDo({nivel1.cargar()})
 //	nivel1.cargar()
-//	puzzle.cargar()
+	puzzle.cargar()
 // 	nivel2.cargar()
 	game.start()
 	
