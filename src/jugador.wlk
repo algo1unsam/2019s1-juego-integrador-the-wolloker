@@ -30,8 +30,6 @@ class Jugador inherits CosaInteractiva {
 
 	method tieneLlave() = equipo.contains(llave)
 
-//	method puedeLevantar() = estaVivo
-
 	method cantEquipo() = equipo.size()
 
 	method imagenSegunEquipo() {
@@ -97,7 +95,7 @@ class Jugador inherits CosaInteractiva {
 	method revivir() {
 		if (not estaVivo) {
 			estaVivo = true
-			self.moverseA(self.position().up(1))
+			self.moverse(self.position().up(1))
 		}
 	}
 
@@ -105,7 +103,7 @@ class Jugador inherits CosaInteractiva {
 		if (estaVivo) cosa.teChocasteCon(self)
 	}
 
-	method moverseA(posicion) {
+	method moverse(posicion) {
 		if (self.posicionValida(posicion)) {
 			self.position(posicion)
 		}

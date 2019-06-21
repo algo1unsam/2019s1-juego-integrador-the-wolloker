@@ -37,7 +37,7 @@ object scheduler {
 }
 
 object movedor {
-	
+
 	const limiteSuperior = (game.height() - 2)
 	const limiteCero = 1
 
@@ -64,38 +64,35 @@ object movedor {
 		const objeto = new Limitador(up = arriba, right = derecha, limV = limiteV, limH = limiteH, objetoAMover = cosa, cambiaSentido = idaYVuelta, posInicial = cosa.position())
 		game.onTick(tiempo, nombre, {=>
 			if (limiteV != 0) {
-				if (objeto.up()) objeto.moverUp() else objeto.moverDown()
+				if (objeto.up()) controladorDeTablero.moverArr(cosa) else controladorDeTablero.moverAba(cosa)
 				objeto.sumarV()
 			}
 			if (limiteH != 0) {
-				if (objeto.right()) objeto.moverRight() else objeto.moverLeft()
+				if (objeto.right()) controladorDeTablero.moverDer(cosa) else controladorDeTablero.moverIzq(cosa)
 				objeto.sumarH()
 			}
 		})
 	}
 
-	method moverProyectiles(lista,paraArriba){
+	method moverProyectiles(lista, paraArriba) {
 		var nroProyectil = 0
-		lista.forEach{proyectil =>
-		game.onTick(proyectil.tiempo(),"proyectil" + nroProyectil , {=> 
-			if(paraArriba){
-				self.moverHaciaArriba(proyectil)	
-			}
-			else{
+		lista.forEach{ proyectil => game.onTick(proyectil.tiempo(), "proyectil" + nroProyectil, {=>
+			if (paraArriba) {
+				self.moverHaciaArriba(proyectil)
+			} else {
 				self.moverHaciaAbajo(proyectil)
 			}
 			nroProyectil++
-		})
-		}
+		})}
 	}
-	
+
 	method moverNivel2() {
-		self.moverProyectiles(nivel2.lineaLava1(),true)
-		self.moverProyectiles(nivel2.lineaLava3(),true)
-		self.moverProyectiles(nivel2.lineaLava2(),false)
-		self.moverProyectiles(nivel2.lineaLava4(),false)
-		self.moverProyectiles(nivel2.bolasAbajo(),false)
-		self.moverProyectiles(nivel2.bolasArriba(),true)
+		self.moverProyectiles(nivel2.lineaLava1(), true)
+		self.moverProyectiles(nivel2.lineaLava3(), true)
+		self.moverProyectiles(nivel2.lineaLava2(), false)
+		self.moverProyectiles(nivel2.lineaLava4(), false)
+		self.moverProyectiles(nivel2.bolasAbajo(), false)
+		self.moverProyectiles(nivel2.bolasArriba(), true)
 	}
 
 	method moverArriba(objeto, velocidad, nombre) {
@@ -105,26 +102,27 @@ object movedor {
 	method moverAbajo(objeto, velocidad, nombre) {
 		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true)
 	}
-	
+
 	method moverHaciaArriba(objeto) {
 		self.moverElemento(objeto, self.arribaDeTodo(objeto.position()), self.posicionTodoAbajo(objeto.position()), objeto.position().up(1))
 	}
-	
+
 	method moverHaciaAbajo(objeto) {
 		self.moverElemento(objeto, self.abajoDeTodo(objeto.position()), self.posicionTodoArriba(objeto.position()), objeto.position().down(1))
 	}
-	
+
 	method moverElemento(objeto, condicion, alBorde, normal) {
 		if (condicion) objeto.moverse(alBorde) else objeto.moverse(normal)
 	}
-	
+
 	method arribaDeTodo(posicion) = posicion.y() == limiteSuperior
-	
+
 	method abajoDeTodo(posicion) = posicion.y() == limiteCero
-	
+
 	method posicionTodoAbajo(posicion) = game.at(posicion.x(), limiteCero)
-	
+
 	method posicionTodoArriba(posicion) = game.at(posicion.x(), limiteSuperior)
+
 }
 
 class Limitador {
@@ -167,22 +165,6 @@ class Limitador {
 
 	method irAInicio() {
 		objetoAMover.moverse(posInicial)
-	}
-
-	method moverUp() {
-		objetoAMover.moverse(objetoAMover.position().up(1))
-	}
-
-	method moverDown() {
-		objetoAMover.moverse(objetoAMover.position().down(1))
-	}
-
-	method moverRight() {
-		objetoAMover.moverse(objetoAMover.position().right(1))
-	}
-
-	method moverLeft() {
-		objetoAMover.moverse(objetoAMover.position().left(1))
 	}
 
 }
@@ -242,7 +224,8 @@ object controladorDeTablero {
 	}
 
 	method moverA(posicion, cosa) {
-		cosa.moverseA(posicion)
+		cosa.moverse(posicion)
 	}
 
 }
+

@@ -18,6 +18,10 @@ class Enemigos inherits CosaInteractiva {
 
 	method tieneLLave() = false
 
+	method moverse(posicion) {
+		self.position(posicion)
+	}
+
 }
 
 object enigma inherits Enemigos {

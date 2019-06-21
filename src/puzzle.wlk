@@ -143,7 +143,7 @@ object puzzle inherits Nivel {
 		fichasDelPuzzle.fichas().forEach({ f => game.addVisual(f)})
 	}
 
-	method moverseA(posicion) {
+	method moverse(posicion) {
 		if (fichasDelPuzzle.gano()) self.gano() else if (controladorDeTablero.cosasDejanPasar(posicion)) {
 			self.moverFicha(posicion, fichasDelPuzzle.hueco().position())
 			fichasDelPuzzle.hueco().position(posicion)

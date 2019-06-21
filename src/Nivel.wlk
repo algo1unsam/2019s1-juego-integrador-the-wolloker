@@ -21,6 +21,7 @@ class Nivel {
 		controladorDeTablero.sacarTodo()
 		self.agregarCosas()
 		self.gameConfig()
+		game.errorReporter(player)
 	}
 
 	method agregarCosas() {
