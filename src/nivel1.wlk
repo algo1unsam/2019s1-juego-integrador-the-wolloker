@@ -18,7 +18,7 @@ object nivel1 inherits Nivel {
 //	const ancho = game.width() - 1
 //	const largo = game.height() - 1
 	override method cargar() {
-		jugador = gaston
+		player = gaston1
 		super()
 //		game.clear()
 //		self.agregarCosas()
@@ -41,7 +41,7 @@ object nivel1 inherits Nivel {
 //	}
 
 	override method agregarCosas() {
-		gaston.position(game.at(1, 1))
+		player.position(game.at(1, 1))
 //		game.addVisual(gaston)
 		game.addVisualIn(sacerdote, game.at(11, 1))
 		game.addVisual(jefe)
@@ -78,9 +78,10 @@ object nivel1 inherits Nivel {
 			game.addVisual(fireL)
 			scheduler.schedule(600, apagar)
 		}
+		if (jefe.estaVivo()){
 		bombita.aparecer()
 		scheduler.schedule(700, explotar)
-	}
+	}}
 
 	method cargarLineaCentralV() {
 		new Range(1,largo-3).forEach({ n => game.addVisualIn(new Pared(), game.at(vertical, n))})

@@ -89,7 +89,7 @@ object puzzle inherits Nivel {
 	method position() = fichasDelPuzzle.hueco().position()
 
 	override method cargar() {
-		jugador = gaston
+		player = gaston1
 //		controladorDeTablero.sacarTodo()
 		super()
 		self.reiniciar()
@@ -97,8 +97,7 @@ object puzzle inherits Nivel {
 	}
 
 	override method agregarCosas() {
-		jugador.position(game.at(9, 5))
-		jugador.conCasco()
+		player.position(game.at(9, 5))
 		self.hacerbordes()
 		self.aparecerFichas()
 		super()

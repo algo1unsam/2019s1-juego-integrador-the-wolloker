@@ -34,12 +34,7 @@ object casco inherits Equipo {
 	override method position() = game.at(19, 7)
 
 	override method teChocasteCon(cosa) {
-		if (cosa.puedeLevantar()) {
-			if (cosa.espadaYArmadura()) {
-				cosa.conCasco()
-				super(cosa)
-			}
-		}
+		if (cosa.espadaYArmadura()) super(cosa)
 	}
 
 	method liberar(cosa) {
@@ -54,31 +49,13 @@ object espada inherits Equipo {
 
 	override method position() = game.at(3, 4)
 
-	override method teChocasteCon(cosa) {
-		super(cosa)
-		if (cosa.tieneArmadura()) {
-			cosa.conEspadaYArmadura()
-		} else {
-			cosa.conEspada()
-		}
-	}
-
 }
 
 object armadura inherits Equipo {
 
 	override method image() = "Armadura1.png"
 
-	override method position() = game.at(11,11)
-
-	override method teChocasteCon(cosa) {
-		super(cosa)
-		if (gaston.tieneEspada()) {
-			gaston.conEspadaYArmadura()
-		} else {
-			gaston.conArmadura()
-		}
-	}
+	override method position() = game.at(11, 11)
 
 }
 
@@ -90,21 +67,11 @@ object llave inherits Equipo {
 
 }
 
-object escudo inherits Equipo{
-	
-	
+object escudo inherits Equipo {
+
 	override method image() = "escudo.png"
 
-	override method position() = game.at(1,12)
+	override method position() = game.at(1, 12)
 
-	override method teChocasteCon(cosa) {
-		super(cosa)
-		if (gaston.fullEquipo()) {
-			gaston.conEscudo()
-		} else {
-			gaston.soloEscudo()
-		}
-	}
-	
 }
 

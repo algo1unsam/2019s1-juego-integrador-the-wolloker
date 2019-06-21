@@ -29,7 +29,7 @@ object nivel2 inherits Nivel {
 	const property magoD2 = new Mago(position = game.at(19, 1))
 
 	override method cargar() {
-		jugador = gaston
+		player = gaston2
 		super()
 //		controladorDeTablero.sacarTodo()
 //		self.agregarCosas()
@@ -56,9 +56,9 @@ object nivel2 inherits Nivel {
 //	}
 
 	override method agregarCosas() {
-		gaston.position(game.at(1, 6))
+		player.position(game.at(1, 6))
 //		game.addVisual(gaston)
-		gaston.reiniciarGolpes()
+//		gaston.reiniciarGolpes()
 		game.addVisualIn(sacerdote, game.at(1, 1))
 		game.addVisual(bolaAbajo1)
 		game.addVisual(magoU1)

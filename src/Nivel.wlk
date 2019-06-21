@@ -13,10 +13,12 @@ class Nivel {
 
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
-	var jugador
+	var player
+
+	method player() = player
 
 	method agregarCosas() {
-		game.addVisual(jugador)
+		game.addVisual(player)
 		self.cargarBordeV(0)
 		self.cargarBordeV(ancho)
 		self.cargarBordeH(0)
@@ -38,12 +40,12 @@ class Nivel {
 	}
 
 	method gameConfig() {
-		game.whenCollideDo(jugador, { objeto => jugador.teChocasteCon(objeto)})
+		game.whenCollideDo(player, { objeto => player.teChocasteCon(objeto)})
 		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
-		keyboard.right().onPressDo({ controladorDeTablero.moverDer(jugador)})
-		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(jugador)})
-		keyboard.down().onPressDo({ controladorDeTablero.moverAba(jugador)})
-		keyboard.up().onPressDo({ controladorDeTablero.moverArr(jugador)})
+		keyboard.right().onPressDo({ controladorDeTablero.moverDer(player)})
+		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(player)})
+		keyboard.down().onPressDo({ controladorDeTablero.moverAba(player)})
+		keyboard.up().onPressDo({ controladorDeTablero.moverArr(player)})
 	}
 
 	method gano()

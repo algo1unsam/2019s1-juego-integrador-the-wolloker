@@ -11,7 +11,7 @@ class Mago inherits CosaInteractiva {
 	override method image() = "mago.png"
 
 	override method teChocasteCon(cosa) {
-		if (cosa == gaston and gaston.estaVivo()) gaston.morir()
+		cosa.morir()
 	}
 
 }
@@ -25,7 +25,7 @@ class Arquero inherits Mago {
 class Proyectil inherits CosaInteractiva {
 
 	var imagen
-	
+
 	override method image() = imagen
 
 	override method teChocasteCon(cosa) {
@@ -33,42 +33,38 @@ class Proyectil inherits CosaInteractiva {
 	}
 
 	method tieneLlave() = false
-	
-	method moverse(posicion){//--------------------------------------------
+
+	method moverse(posicion) { // --------------------------------------------
 		self.position(posicion)
 	}
+
 }
 
 class Lava inherits Proyectil {
-	
+
 	const property tiempo = 1000
-	
+
 }
 
 class BolaDeNieve inherits Proyectil {
-	
+
 	const property tiempo = 100
-	
+
 }
 
 class Obsidiana inherits Proyectil {
-	
-	const property tiempo = 1000
-	
-	override method teChocasteCon(cosa) {
-		
-	}
-	
-	override method moverse(posicion){
-		
-		super(posicion)
-		
-		if(gaston.estaVivo() and gaston.position().up(1) == self.position()){
-				gaston.position(self.position())
-		}
-		
-	}
-	
-}
 
+	const property tiempo = 1000
+
+	override method teChocasteCon(cosa) {
+	}
+
+//	override method moverse(posicion) {
+//		super(posicion)
+//		if (gaston.estaVivo() and gaston.position().up(1) == self.position()) {
+//			gaston.position(self.position())
+//		}
+//	}
+
+}
 

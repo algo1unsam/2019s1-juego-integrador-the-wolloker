@@ -4,6 +4,7 @@ import paredes.*
 import tablero.*
 import gaston.*
 import objetos.*
+import nivel1.*
 
 class Enemigos inherits CosaInteractiva {
 
@@ -54,7 +55,7 @@ object zombie inherits Enemigos {
 	override method image() = "zombie.png"
 
 	override method teChocasteCon(cosa) {
-		if (gaston.espadaYArmadura()) {
+		if (cosa.espadaYArmadura()) {
 			self.morir(cosa)
 			game.removeTickEvent("movimientoZombie")
 		} else {
@@ -68,6 +69,9 @@ object zombie inherits Enemigos {
 object jefe inherits Enemigos {
 
 	const esbirros = [ enigma, zombie ]
+	var jefeVivo = true
+
+	method estaVivo() = jefeVivo
 
 	override method position() {
 		if (position == null) {
@@ -84,10 +88,11 @@ object jefe inherits Enemigos {
 		game.removeTickEvent("movimientoJefe")
 		game.removeVisual(self)
 		llave.aparecer()
+		jefeVivo = false
 	}
 
 	override method teChocasteCon(cosa) {
-		if (cosa.fullEquipo() and self.todosLosEnemigosMuertos(cosa)) {
+		if (cosa.fullEquipoSinEscudo() and self.todosLosEnemigosMuertos(cosa)) {
 			self.morir(cosa)
 		} else {
 			cosa.morir()

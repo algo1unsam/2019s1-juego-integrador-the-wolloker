@@ -13,7 +13,6 @@ object puerta inherits CosaInteractiva {
 	method pasoNivel1(cosa) {
 		if (cosa.tieneLlave()) {
 			nivel1.gano()
-			cosa.pasasteNivel1()
 		}
 	}
 
