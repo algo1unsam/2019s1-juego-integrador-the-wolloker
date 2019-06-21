@@ -4,6 +4,7 @@ import nivel2.*
 import paredes.*
 import tablero.*
 import Nivel.*
+import presentacion.*
 
 class ParedRoja inherits Pared {
 
@@ -96,6 +97,7 @@ object puzzle inherits Nivel {
 
 	override method agregarCosas() {
 		player.position(game.at(9, 5))
+		game.addVisual(cartelpuzzle)
 		self.hacerbordes()
 		self.aparecerFichas()
 		super()
@@ -155,7 +157,7 @@ object puzzle inherits Nivel {
 	}
 
 	override method gano() {
-		keyboard.any().onPressDo({ nivel2.cargar()})
+		keyboard.p().onPressDo({ nivel2.cargar()})
 	}
 
 	method reiniciar() {
