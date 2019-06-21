@@ -34,7 +34,7 @@ class Proyectil inherits CosaInteractiva {
 
 	method tieneLlave() = false
 
-	method moverse(posicion) { // --------------------------------------------
+	method moverse(posicion) { 
 		self.position(posicion)
 	}
 

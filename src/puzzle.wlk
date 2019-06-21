@@ -90,10 +90,8 @@ object puzzle inherits Nivel {
 
 	override method cargar() {
 		player = gaston1
-//		controladorDeTablero.sacarTodo()
 		super()
 		self.reiniciar()
-//		self.apareceGaston()
 	}
 
 	override method agregarCosas() {
@@ -110,11 +108,6 @@ object puzzle inherits Nivel {
 		keyboard.down().onPressDo({ controladorDeTablero.moverArr(self)})
 	}
 
-//
-//	method apareceGaston() {
-//		gaston.conCasco()
-//		game.addVisualIn(gaston, game.at(9, 5))
-//	}
 	method hacerbordes() {
 		self.bordeSup()
 		self.bordeInf()

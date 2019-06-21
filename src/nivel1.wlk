@@ -15,34 +15,19 @@ object nivel1 inherits Nivel {
 	const vertical = 12
 	const horizontal = 6
 
-//	const ancho = game.width() - 1
-//	const largo = game.height() - 1
 	override method cargar() {
 		player = gaston1
 		super()
-//		game.clear()
-//		self.agregarCosas()
-//		keyboard.right().onPressDo({ controladorDeTablero.moverDer(gaston)})
-//		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
-//		keyboard.down().onPressDo({ controladorDeTablero.moverAba(gaston)})
-//		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
-//		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
-//		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
+	}
+
+	override method gameConfig() {
+		super()
 		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1(cosa)})
 		movedor.moverNivel1()
 	}
 
-//	method cargarBordeV(x) {
-//		new Range(0,largo).forEach({ n => game.addVisualIn(new Pared(), game.at(x, n))})
-//	}
-//
-//	method cargarBordeH(y) {
-//		new Range(1,ancho-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, y))})
-//	}
-
 	override method agregarCosas() {
 		player.position(game.at(1, 1))
-//		game.addVisual(gaston)
 		game.addVisualIn(sacerdote, game.at(11, 1))
 		game.addVisual(jefe)
 		game.addVisual(espada)
@@ -50,10 +35,6 @@ object nivel1 inherits Nivel {
 		game.addVisual(enigma)
 		game.addVisual(zombie)
 		game.addVisualIn(puerta, game.at(21, 1))
-//		self.cargarBordeV(0)
-//		self.cargarBordeV(ancho)
-//		self.cargarBordeH(0)
-//		self.cargarBordeH(largo)
 		self.cargarLineaCentralV()
 		self.cargarLineaCentralH()
 		super()
@@ -78,10 +59,11 @@ object nivel1 inherits Nivel {
 			game.addVisual(fireL)
 			scheduler.schedule(600, apagar)
 		}
-		if (jefe.estaVivo()){
-		bombita.aparecer()
-		scheduler.schedule(700, explotar)
-	}}
+		if (jefe.estaVivo()) {
+			bombita.aparecer()
+			scheduler.schedule(700, explotar)
+		}
+	}
 
 	method cargarLineaCentralV() {
 		new Range(1,largo-3).forEach({ n => game.addVisualIn(new Pared(), game.at(vertical, n))})

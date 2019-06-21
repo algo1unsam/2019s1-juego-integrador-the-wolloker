@@ -69,9 +69,7 @@ object zombie inherits Enemigos {
 object jefe inherits Enemigos {
 
 	const esbirros = [ enigma, zombie ]
-	var jefeVivo = true
-
-	method estaVivo() = jefeVivo
+	var property estaVivo = true
 
 	override method position() {
 		if (position == null) {
@@ -85,10 +83,10 @@ object jefe inherits Enemigos {
 	method todosLosEnemigosMuertos(cosa) = cosa.derrotados().asSet() == esbirros.asSet()
 
 	override method morir(cosa) {
+		estaVivo = false
 		game.removeTickEvent("movimientoJefe")
 		game.removeVisual(self)
 		llave.aparecer()
-		jefeVivo = false
 	}
 
 	override method teChocasteCon(cosa) {

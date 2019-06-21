@@ -17,12 +17,18 @@ class Nivel {
 
 	method player() = player
 
+	method cargar() {
+		controladorDeTablero.sacarTodo()
+		self.agregarCosas()
+		self.gameConfig()
+	}
+
 	method agregarCosas() {
-		game.addVisual(player)
 		self.cargarBordeV(0)
 		self.cargarBordeV(ancho)
 		self.cargarBordeH(0)
 		self.cargarBordeH(largo)
+		game.addVisual(player)
 	}
 
 	method cargarBordeV(x) {
@@ -31,12 +37,6 @@ class Nivel {
 
 	method cargarBordeH(y) {
 		new Range(1,ancho-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, y))})
-	}
-
-	method cargar() {
-		controladorDeTablero.sacarTodo()
-		self.agregarCosas()
-		self.gameConfig()
 	}
 
 	method gameConfig() {

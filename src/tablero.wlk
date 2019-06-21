@@ -166,23 +166,23 @@ class Limitador {
 	}
 
 	method irAInicio() {
-		objetoAMover.position(posInicial)
+		objetoAMover.moverse(posInicial)
 	}
 
 	method moverUp() {
-		objetoAMover.position(objetoAMover.position().up(1))
+		objetoAMover.moverse(objetoAMover.position().up(1))
 	}
 
 	method moverDown() {
-		objetoAMover.position(objetoAMover.position().down(1))
+		objetoAMover.moverse(objetoAMover.position().down(1))
 	}
 
 	method moverRight() {
-		objetoAMover.position(objetoAMover.position().right(1))
+		objetoAMover.moverse(objetoAMover.position().right(1))
 	}
 
 	method moverLeft() {
-		objetoAMover.position(objetoAMover.position().left(1))
+		objetoAMover.moverse(objetoAMover.position().left(1))
 	}
 
 }

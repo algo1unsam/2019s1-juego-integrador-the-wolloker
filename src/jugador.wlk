@@ -10,7 +10,6 @@ class Jugador inherits CosaInteractiva {
 	const property equipo = []
 	var estaVivo = true
 
-//	method estaVivo() = estaVivo
 	override method image() = self.imagenSegunEquipo()
 
 	method sinEquipo() = equipo.isEmpty()
@@ -31,7 +30,7 @@ class Jugador inherits CosaInteractiva {
 
 	method tieneLlave() = equipo.contains(llave)
 
-	method puedeLevantar() = estaVivo
+//	method puedeLevantar() = estaVivo
 
 	method cantEquipo() = equipo.size()
 
@@ -57,7 +56,7 @@ class Jugador inherits CosaInteractiva {
 				if (self.cantEquipo() == 2 and self.espadaYArmadura()) {
 					self.conEspadaYArmadura()
 				} else {
-					if (self.cantEquipo() >=3 and self.fullEquipoSinEscudo()) {
+					if (self.cantEquipo() >= 3 and self.fullEquipoSinEscudo()) {
 						self.fullSinEscudo()
 					} else {
 						if (self.fullEquipoConEscudo()) self.full()
