@@ -57,6 +57,7 @@ object nivel2 inherits Nivel {
 	override method gameConfig() {
 		super()
 		game.whenCollideDo(puerta, { e => puerta.pasoNivel2(e)})
+		keyboard.r().onPressDo({ self.cargar()})
 		movedor.moverNivel2()
 	}
 
@@ -87,7 +88,7 @@ object nivel2 inherits Nivel {
 		controladorDeTablero.sacarTodo()
 		game.addVisual(final)
 		game.sound("win.mp3")
-		keyboard.any().onPressDo({ game.stop()})
+		keyboard.space().onPressDo({ game.stop()})
 	}
 
 }
