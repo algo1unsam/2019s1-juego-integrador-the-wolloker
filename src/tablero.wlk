@@ -74,7 +74,7 @@ object movedor {
 		})
 	}
 
-	method moverProyectilesArriba(lista,paraArriba){
+	method moverProyectiles(lista,paraArriba){
 		var nroProyectil = 0
 		lista.forEach{proyectil =>
 		game.onTick(proyectil.tiempo(),"proyectil" + nroProyectil , {=> 
@@ -90,14 +90,12 @@ object movedor {
 	}
 	
 	method moverNivel2() {
-		self.moverBola1Up()
-		self.moverBola2Up()
-		self.moverBola1Down()
-		self.moverBola2Down()
-		self.moverProyectilesArriba(nivel2.lineaLava1(),true)
-		self.moverProyectilesArriba(nivel2.lineaLava3(),true)
-		self.moverProyectilesArriba(nivel2.lineaLava2(),false)
-		self.moverProyectilesArriba(nivel2.lineaLava4(),false)
+		self.moverProyectiles(nivel2.lineaLava1(),true)
+		self.moverProyectiles(nivel2.lineaLava3(),true)
+		self.moverProyectiles(nivel2.lineaLava2(),false)
+		self.moverProyectiles(nivel2.lineaLava4(),false)
+		self.moverProyectiles(nivel2.bolasAbajo(),false)
+		self.moverProyectiles(nivel2.bolasArriba(),true)
 	}
 
 	method moverArriba(objeto, velocidad, nombre) {
@@ -106,22 +104,6 @@ object movedor {
 
 	method moverAbajo(objeto, velocidad, nombre) {
 		self.darMovimiento(objeto, velocidad, nombre, 13, 0, false, false, true)
-	}
-
-	method moverBola1Up() {
-		self.moverArriba(nivel2.bolaArriba1(), 30, "movimientoBolaArriba1")
-	}
-
-	method moverBola2Up() {
-		self.moverArriba(nivel2.bolaArriba2(), 60, "movimientoBolaArriba2")
-	}
-
-	method moverBola1Down() {
-		self.moverAbajo(nivel2.bolaAbajo1(), 60, "movimientoBolaAbajo1")
-	}
-
-	method moverBola2Down() {
-		self.moverAbajo(nivel2.bolaAbajo2(), 25, "movimientoBolaAbajo2")
 	}
 	
 	method moverHaciaArriba(objeto) {

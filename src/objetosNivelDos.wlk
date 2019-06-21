@@ -55,9 +55,9 @@ class Obsidiana inherits Proyectil {
 	
 	const property tiempo = 1000
 	
-//	override method teChocasteCon(cosa) {
-//		
-//	}
+	override method teChocasteCon(cosa) {
+		
+	}
 	
 	override method moverse(posicion){
 		

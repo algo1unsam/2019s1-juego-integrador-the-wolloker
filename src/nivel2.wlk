@@ -12,20 +12,25 @@ object nivel2 {
 
 	const ancho = game.width() - 1
 	const largo = game.height() - 1
-	const property bolaArriba1 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(6, 2))
-	const property bolaArriba2 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(19, 2))
-	const property bolaAbajo1 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
-	const property bolaAbajo2 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(16, 10))
+	
+	const bolaArriba1 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(6, 2))
+	const bolaArriba2 = new BolaDeNieve(imagen = "boladefuego.png", position = game.at(19, 2))
+	const bolaAbajo1 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(3, 10))
+	const bolaAbajo2 = new BolaDeNieve(imagen = "boladefuegoabajo.png", position = game.at(16, 10))
+	
 	const property lineaLava1 = []
 	const property lineaLava3 = []
 	const property lineaLava2 = []
 	const property lineaLava4 = []
+	
+	const property bolasAbajo = [bolaAbajo1,bolaAbajo2]
+	const property bolasArriba = [bolaArriba1, bolaArriba2]
+	
 	const property magoU1 = new Mago(position = game.at(3, 12))
 	const property magoD1 = new Mago(position = game.at(6, 1))
 	const property magoU2 = new Mago(position = game.at(16, 12))
 	const property magoD2 = new Mago(position = game.at(19, 1))
 
-//	const lineaDeLava1 = new Range(1, 13).forEach({n => self.crearLava(10,n,lista)})
 	method crearLava(x, y) = new Lava(imagen = "lava.png", position = game.at(x, y))
 
 	method agregar(lista, obj) {
@@ -56,8 +61,8 @@ object nivel2 {
 		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
 		self.llenarLista(lineaLava1, 10, 1, 13, 1, 5, 9)
 		self.llenarLista(lineaLava3, 12, 1, 13, 3, 7, 11)
-		//self.llenarLista(lineaLava2, 11, 1, 13, 3, 7, 11)
-		//self.llenarLista(lineaLava4, 13, 1, 13, 3, 7, 11)
+		self.llenarLista(lineaLava2, 11, 1, 13, 3, 7, 11)
+		self.llenarLista(lineaLava4, 13, 1, 13, 3, 7, 11)
 		movedor.moverNivel2()
 	}
 
