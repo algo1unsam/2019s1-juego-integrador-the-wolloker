@@ -82,7 +82,9 @@ object fichasDelPuzzle {
 	method posicion9() = self.centro().right(1).down(1)
 
 	method gano() = self.fichas().all({ f => f.posicionCorrecta() == f.position() })
-
+method cargarUltimaFicha(){
+			game.addVisual(new Ficha(imagenFicha = "ficha9.png", posicionCorrecta = self.posicion9(), position = self.posicion9()))
+}
 }
 
 object puzzle inherits Nivel {
@@ -97,7 +99,7 @@ object puzzle inherits Nivel {
 
 	override method agregarCosas() {
 		player.position(game.at(9, 5))
-		game.addVisual(cartelpuzzle)
+		
 		self.hacerbordes()
 		self.aparecerFichas()
 		super()
@@ -157,7 +159,9 @@ object puzzle inherits Nivel {
 	}
 
 	override method gano() {
+		game.addVisual(cartelpuzzle)
 		keyboard.p().onPressDo({ nivel2.cargar()})
+		fichasDelPuzzle.cargarUltimaFicha()
 	}
 
 	method reiniciar() {
