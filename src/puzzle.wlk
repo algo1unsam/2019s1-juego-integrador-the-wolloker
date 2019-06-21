@@ -106,6 +106,7 @@ object puzzle inherits Nivel {
 	method position() = fichasDelPuzzle.hueco().position()
 
 	override method cargar() {
+		game.sound("round2.mp3")
 		player = gaston1
 		super()
 		self.reiniciar()
@@ -174,6 +175,7 @@ object puzzle inherits Nivel {
 	}
 
 	override method gano() {
+		game.sound("portal.mp3")
 		game.addVisual(cartelpuzzle)
 		keyboard.p().onPressDo({ nivel2.cargar()})
 		fichasDelPuzzle.cargarUltimaFicha()

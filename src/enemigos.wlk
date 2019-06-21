@@ -11,6 +11,7 @@ class Enemigos inherits CosaInteractiva {
 	override method dejaPasar() = true
 
 	method morir(cosa) {
+		game.sound("golpe.mp3")
 		game.removeVisual(self)
 		cosa.derrotasteA(self)
 		casco.liberar(cosa)
@@ -87,6 +88,7 @@ object jefe inherits Enemigos {
 	method todosLosEnemigosMuertos(cosa) = cosa.derrotados().asSet() == esbirros.asSet()
 
 	override method morir(cosa) {
+		game.sound("golpe.mp3")
 		estaVivo = false
 		game.removeTickEvent("movimientoJefe")
 		game.removeVisual(self)
@@ -97,6 +99,7 @@ object jefe inherits Enemigos {
 		if (cosa.fullEquipoSinEscudo() and self.todosLosEnemigosMuertos(cosa)) {
 			self.morir(cosa)
 		} else {
+			game.sound("risaJefe.mp3")
 			cosa.morir()
 			game.say(cosa, "Tengo que estar bien equipado")
 		}

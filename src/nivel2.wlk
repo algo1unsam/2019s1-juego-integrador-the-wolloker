@@ -28,6 +28,7 @@ object nivel2 inherits Nivel {
 	const property magoD2 = new Mago(position = game.at(19, 1))
 
 	override method cargar() {
+		game.sound("round3.mp3")
 		player = gaston2
 		super()
 	}
@@ -85,6 +86,7 @@ object nivel2 inherits Nivel {
 	method gameOver() {
 		controladorDeTablero.sacarTodo()
 		game.addVisual(final)
+		game.sound("win.mp3")
 		keyboard.any().onPressDo({ game.stop()})
 	}
 

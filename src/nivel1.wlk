@@ -16,6 +16,7 @@ object nivel1 inherits Nivel {
 	const horizontal = 6
 
 	override method cargar() {
+		game.sound("round1.mp3")
 		player = gaston1
 		super()
 	}
@@ -77,6 +78,7 @@ object nivel1 inherits Nivel {
 	}
 
 	override method gano() {
+		game.sound("portal.mp3")
 		puzzle.cargar()
 		gaston1.tirarEquipo(llave)
 		gaston2.copiarEquipo(gaston1.equipo())

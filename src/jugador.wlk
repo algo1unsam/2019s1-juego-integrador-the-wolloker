@@ -93,6 +93,7 @@ class Jugador inherits CosaInteractiva {
 	method casper() = "casper.png"
 
 	method morir() {
+		game.sound("muerte.mp3")
 		estaVivo = false
 		self.dejarEquipo()
 	}
