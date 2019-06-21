@@ -75,6 +75,8 @@ object nivel1 inherits Nivel {
 
 	override method gano() {
 		puzzle.cargar()
+		gaston1.tirarEquipo(llave)
+		gaston2.copiarEquipo(gaston1.equipo())
 	}
 
 }

@@ -32,33 +32,45 @@ class Jugador inherits CosaInteractiva {
 
 	method cantEquipo() = equipo.size()
 
+	method solo1Equipo() {
+		return if (self.tieneArmadura()) {
+			self.soloArmadura()
+		} else {
+			if (self.tieneEspada()) {
+				self.soloEspada()
+			} else {
+				if (self.tieneEscudo()) {
+					self.soloEscudo()
+				} else {
+					self.desequipado()
+				}
+			}
+		}
+	}
+
+	method solo2Equipo() {
+		return if (self.tieneLlave()) self.solo1Equipo() else self.conEspadaYArmadura()
+	}
+
+	method solo3Equipo() {
+		return if (not self.fullEquipoConEscudo() ) {
+			if( self.fullEquipoSinEscudo())self.fullSinEscudo()
+		} else {
+			if (self.fullEquipoConEscudo()) self.full()
+		}
+	}
+
 	method imagenSegunEquipo() {
 		return if (not estaVivo) self.casper() else if (self.cantEquipo() == 0) {
 			self.desequipado()
 		} else {
 			if (self.cantEquipo() == 1) {
-				if (self.tieneArmadura()) {
-					self.soloArmadura()
-				} else {
-					if (self.tieneEspada()) {
-						self.soloEspada()
-					} else {
-						if (self.tieneEscudo()) {
-							self.soloEscudo()
-						} else {
-							self.desequipado()
-						}
-					}
-				}
+				self.solo1Equipo()
 			} else {
-				if (self.cantEquipo() == 2 and self.espadaYArmadura()) {
-					self.conEspadaYArmadura()
+				if (self.cantEquipo() == 2) {
+					self.solo2Equipo()
 				} else {
-					if (self.cantEquipo() >= 3 and self.fullEquipoSinEscudo()) {
-						self.fullSinEscudo()
-					} else {
-						if (self.fullEquipoConEscudo()) self.full()
-					}
+					self.solo3Equipo()
 				}
 			}
 		}
@@ -84,7 +96,8 @@ class Jugador inherits CosaInteractiva {
 		estaVivo = false
 		self.dejarEquipo()
 	}
-		method dejarEquipo() {
+
+	method dejarEquipo() {
 		equipo.forEach{ objeto => objeto.aparecer()}
 		self.tirarTodo()
 	}

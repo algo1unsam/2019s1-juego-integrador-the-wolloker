@@ -20,14 +20,16 @@ object gaston1 inherits Jugador {
 object gaston2 inherits Jugador {
 
 	var siguiendoA = nada
-	
+
+	method copiarEquipo(lista) {
+		equipo.addAll(lista)
+	}
 
 	method siguiendoA(alguien) {
 		siguiendoA = alguien
 	}
 
 	method dejarDeSeguir() {
-		
 		siguiendoA.dejarDeLlevar()
 	}
 
@@ -42,8 +44,29 @@ object gaston2 inherits Jugador {
 		if (self.posicionValida(posicion)) self.dejarDeSeguir()
 	}
 
-//	method teGolpeo() {
-//		self.moverseA(self.position().left(1))
+	method posRandom() = game.at(1.randomUpTo(14), 1.randomUpTo(18))
+
+	override method teGolpeo() {
+		self.moverse(self.position().left(1))
+		self.sobrevivio()
+	}
+
+	method sobrevivio() {
+		if (self.tieneEscudo()) {
+			self.perderEscudo()
+		} else { if (self.fullEquipoSinEscudo()) self.tirarTodo() else self.morir()
+		}
+	}
+
+	method perderEscudo() {
+		self.tirarEquipo(escudo)
+		escudo.position(self.posRandom())
+		escudo.aparecer()
+	}
+
+//	
+//method teGolpeo() {
+//		
 //		if (self.golpes() == 0) {
 //			game.addVisualIn(escudo, game.at(1.randomUpTo(14), 1.randomUpTo(18)))
 //			equipo.clear()
