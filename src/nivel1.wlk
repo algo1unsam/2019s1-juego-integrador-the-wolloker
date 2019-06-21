@@ -8,13 +8,56 @@ import sacerdote.*
 import puzzle.*
 import tablero.*
 import objetosNivelDos.*
+import Nivel.*
 
-object nivel1 {
+object nivel1 inherits Nivel {
 
 	const vertical = 12
 	const horizontal = 6
-	const ancho = game.width() - 1
-	const largo = game.height() - 1
+
+//	const ancho = game.width() - 1
+//	const largo = game.height() - 1
+	override method cargar() {
+		jugador = gaston
+		super()
+//		game.clear()
+//		self.agregarCosas()
+//		keyboard.right().onPressDo({ controladorDeTablero.moverDer(gaston)})
+//		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
+//		keyboard.down().onPressDo({ controladorDeTablero.moverAba(gaston)})
+//		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
+//		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
+//		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
+		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1(cosa)})
+		movedor.moverNivel1()
+	}
+
+//	method cargarBordeV(x) {
+//		new Range(0,largo).forEach({ n => game.addVisualIn(new Pared(), game.at(x, n))})
+//	}
+//
+//	method cargarBordeH(y) {
+//		new Range(1,ancho-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, y))})
+//	}
+
+	override method agregarCosas() {
+		gaston.position(game.at(1, 1))
+//		game.addVisual(gaston)
+		game.addVisualIn(sacerdote, game.at(11, 1))
+		game.addVisual(jefe)
+		game.addVisual(espada)
+		game.addVisual(armadura)
+		game.addVisual(enigma)
+		game.addVisual(zombie)
+		game.addVisualIn(puerta, game.at(21, 1))
+//		self.cargarBordeV(0)
+//		self.cargarBordeV(ancho)
+//		self.cargarBordeH(0)
+//		self.cargarBordeH(largo)
+		self.cargarLineaCentralV()
+		self.cargarLineaCentralH()
+		super()
+	}
 
 	method plantarBomba() {
 		const bombita = new Proyectil(imagen = "bomba.png", position = game.at(14.randomUpTo(ancho - 2), 2.randomUpTo(largo - 2)))
@@ -39,29 +82,6 @@ object nivel1 {
 		scheduler.schedule(700, explotar)
 	}
 
-
-
-	method cargar() {
-		game.clear()
-		self.agregarCosas()
-		keyboard.right().onPressDo({ controladorDeTablero.moverDer(gaston)})
-		keyboard.left().onPressDo({ controladorDeTablero.moverIzq(gaston)})
-		keyboard.down().onPressDo({ controladorDeTablero.moverAba(gaston)})
-		keyboard.up().onPressDo({ controladorDeTablero.moverArr(gaston)})
-		game.whenCollideDo(gaston, { objeto => gaston.teChocasteCon(objeto)})
-		game.whenCollideDo(sacerdote, { cosa => sacerdote.teChocasteCon(cosa)})
-		game.whenCollideDo(puerta, { cosa => puerta.pasoNivel1(cosa)})
-		movedor.moverNivel1()
-	}
-
-	method cargarBordeV(x) {
-		new Range(0,largo).forEach({ n => game.addVisualIn(new Pared(), game.at(x, n))})
-	}
-
-	method cargarBordeH(y) {
-		new Range(1,ancho-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, y))})
-	}
-
 	method cargarLineaCentralV() {
 		new Range(1,largo-3).forEach({ n => game.addVisualIn(new Pared(), game.at(vertical, n))})
 	}
@@ -70,25 +90,9 @@ object nivel1 {
 		new Range(2,vertical-1).forEach({ n => game.addVisualIn(new Pared(), game.at(n, horizontal))})
 	}
 
-	method agregarCosas() {
-		game.addVisual(gaston)
-		game.addVisualIn(sacerdote, game.at(11, 1))
-		game.addVisual(jefe)
-		game.addVisual(espada)
-		game.addVisual(armadura)
-		game.addVisual(enigma)
-		game.addVisual(zombie)
-		game.addVisualIn(puerta, game.at(21, 1))
-		self.cargarBordeV(0)
-		self.cargarBordeV(ancho)
-		self.cargarBordeH(0)
-		self.cargarBordeH(largo)
-		self.cargarLineaCentralV()
-		self.cargarLineaCentralH()
-	}
-
-	method gano() {
+	override method gano() {
 		puzzle.cargar()
 	}
 
 }
+

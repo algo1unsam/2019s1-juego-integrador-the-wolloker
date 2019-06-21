@@ -3,6 +3,7 @@ import gaston.*
 import nivel2.*
 import paredes.*
 import tablero.*
+import Nivel.*
 
 class ParedRoja inherits Pared {
 
@@ -83,27 +84,38 @@ object fichasDelPuzzle {
 
 }
 
-object puzzle {
+object puzzle inherits Nivel {
 
 	method position() = fichasDelPuzzle.hueco().position()
 
-	method cargar() {
-		
-		controladorDeTablero.sacarTodo()
+	override method cargar() {
+		jugador = gaston
+//		controladorDeTablero.sacarTodo()
+		super()
 		self.reiniciar()
+//		self.apareceGaston()
+	}
+
+	override method agregarCosas() {
+		jugador.position(game.at(9, 5))
+		jugador.conCasco()
 		self.hacerbordes()
 		self.aparecerFichas()
-		self.apareceGaston()
+		super()
+	}
+
+	override method gameConfig() {
 		keyboard.left().onPressDo({ controladorDeTablero.moverDer(self)})
 		keyboard.right().onPressDo({ controladorDeTablero.moverIzq(self)})
 		keyboard.up().onPressDo({ controladorDeTablero.moverAba(self)})
 		keyboard.down().onPressDo({ controladorDeTablero.moverArr(self)})
 	}
-	method apareceGaston(){
-		gaston.conCasco()
-		game.addVisualIn(gaston,game.at(9,5))
-	}
 
+//
+//	method apareceGaston() {
+//		gaston.conCasco()
+//		game.addVisualIn(gaston, game.at(9, 5))
+//	}
 	method hacerbordes() {
 		self.bordeSup()
 		self.bordeInf()
@@ -150,12 +162,8 @@ object puzzle {
 		controladorDeTablero.cosasEn(inicio).get(0).position(fin)
 	}
 
-	method gano() {
-		keyboard.any().onPressDo({ if (fichasDelPuzzle.gano()) {
-				
-				nivel2.cargar()
-			}
-		})
+	override method gano() {
+		keyboard.any().onPressDo({ nivel2.cargar()})
 	}
 
 	method reiniciar() {
